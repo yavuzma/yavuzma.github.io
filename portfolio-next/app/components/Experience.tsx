@@ -12,12 +12,8 @@ const experiences = [
         current: true,
         fullTime: true,
         bullets: [
-            "Focus Areas: Force and Moment Measurements, Propeller, Cavitation",
-        ],
-        focus: [
-            "ANSYS Fluent",
-            "Python",
-            "C",
+            "Force and moment measurement in CFD and comparison with EFD results.",
+            "Control and automation code development."
         ],
     },
     {
@@ -33,7 +29,7 @@ const experiences = [
     {
         period: "Aug 2024 — Sep 2024",
         title: "Production Engineer",
-        company: "Beşiktaş Shipyard",
+        company: "Besiktas Shipyard",
         companyUrl: "https://www.besiktasshipyard.com/",
         current: false,
         fullTime: true,
@@ -109,8 +105,7 @@ function SwimmingFish() {
                     animation: `${f.reverse ? "fishSwimReverse" : "fishSwim"} ${f.duration}s linear ${f.delay}s infinite`,
                     ...(f.reverse ? { right: "-60px" } : { left: "-60px" }),
                 }}>
-                    <svg width={f.size} height={f.size * 0.5} viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        style={{ transform: f.reverse ? "scaleX(1)" : "scaleX(-1)" }}>
+                    <svg width={f.size} height={f.size * 0.5} viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M70 20C70 20 60 5 40 5C20 5 8 15 2 20C8 25 20 35 40 35C60 35 70 20 70 20Z" fill="var(--cy)" />
                         <path d="M72 20L80 12V28L72 20Z" fill="var(--cy)" />
                         <circle cx="18" cy="18" r="2.5" fill="var(--bg)" />
@@ -271,7 +266,7 @@ export default function Experience() {
                                                                     className="group flex flex-col items-center transition-opacity hover:opacity-80"
                                                                     style={{ textDecoration: "none" }}
                                                                 >
-                                                                    <span style={{ fontFamily: "var(--fb)", fontSize: "0.82rem", color: "var(--t1)", fontWeight: 600 }}>{item.name}</span>
+                                                                    <span style={{ fontFamily: "var(--fb)", fontSize: "0.82rem", color: "var(--t1)", fontWeight: 600 }}>{item.name} ↗</span>
                                                                     <span style={{ fontFamily: "var(--fm)", fontSize: "0.68rem", color: "var(--cy)", opacity: 0.8, marginTop: "1px" }}>IMO:{item.imo}</span>
                                                                 </a>
                                                                 {idx < f.items.length - 1 && <span style={{ color: "var(--t3)", margin: "0 0.5rem", opacity: 0.4 }}>•</span>}
@@ -288,17 +283,7 @@ export default function Experience() {
                                     </div>
                                 )}
 
-                                {/* Focus areas */}
-                                {exp.focus && (
-                                    <div style={{ borderTop: "1px solid var(--bdr)", paddingTop: "0.75rem", marginTop: "0.75rem" }}>
-                                        <span style={{ fontFamily: "var(--fb)", fontSize: "0.7rem", color: "var(--t3)", textTransform: "uppercase", letterSpacing: "0.5px", fontWeight: 500 }}>Focus Areas</span>
-                                        <div className="flex flex-wrap justify-center gap-2 mt-2">
-                                            {exp.focus.map((f) => (
-                                                <span key={f} className="tech-tag">{f}</span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
+
                             </div>
                         </motion.div>
                     ))}

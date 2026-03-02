@@ -102,7 +102,7 @@ export default function CVPage() {
                                         <span className="text-xs font-bold text-slate-500 uppercase">Aug 2025 – Present</span>
                                     </div>
                                     <p className="text-[0.85rem] font-bold text-blue-700">CFD Engineer & Software Developer</p>
-                                    <p className="text-xs text-slate-600 font-medium mt-1">Focus on Force/Moment Measurements, Propellers, and Cavitation tests.</p>
+                                    <p className="text-xs text-slate-600 font-medium mt-1">Force and moment measurement in CFD and comparison with EFD results.<br />Control and automation code development.</p>
                                 </div>
 
                                 <div>
@@ -116,7 +116,7 @@ export default function CVPage() {
 
                                 <div>
                                     <div className="flex justify-between items-baseline mb-1">
-                                        <h3 className="font-bold text-slate-900 text-[0.95rem]">Beşiktaş Shipyard</h3>
+                                        <h3 className="font-bold text-slate-900 text-[0.95rem]">Besiktas Shipyard</h3>
                                         <span className="text-xs font-bold text-slate-500 uppercase">Aug 2024 – Sep 2024 · Full-time Internship</span>
                                     </div>
                                     <p className="text-[0.85rem] font-bold text-blue-700">Production Engineer</p>
