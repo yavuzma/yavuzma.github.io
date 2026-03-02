@@ -706,6 +706,123 @@
         }
     </script>
 
+    <!-- ══ CV VISITOR LOGGER ══
+         Ziyaretçi bilgilerini Google Sheets'e kaydeder.
+         Tracking ID değiştirmek için APPS_SCRIPT_URL'yi güncelle.
+    ══════════════════════════════ -->
+    <script>
+        (function () {
+            // ── YAPILANDIR ──────────────────────────────────────────
+            var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxnzBSqkxSC8o_q9i6IQNCEBykHBjHFycWescB_yLcM2S-p5YYZW4Bjlkpt8KUPX2Y/exec";
+            // ────────────────────────────────────────────────────────
+
+            if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'BURAYA_WEB_APP_URL_YAPISTIR') return;
+
+            var startTime = Date.now();
+
+            // User-Agent parse
+            function parseUA(ua) {
+                var browser = 'Bilinmiyor', os = 'Bilinmiyor', device = 'Masaüstü';
+
+                // Cihaz türü
+                if (/Mobi|Android/i.test(ua)) device = 'Mobil';
+                else if (/Tablet|iPad/i.test(ua)) device = 'Tablet';
+
+                // Tarayıcı
+                if (/Edg\//i.test(ua)) browser = 'Edge';
+                else if (/OPR|Opera/i.test(ua)) browser = 'Opera';
+                else if (/Chrome/i.test(ua)) browser = 'Chrome';
+                else if (/Firefox/i.test(ua)) browser = 'Firefox';
+                else if (/Safari/i.test(ua)) browser = 'Safari';
+                // Versiyon
+                var bv = ua.match(/(Chrome|Firefox|Safari|Edg|OPR)[\/\s]([\d.]+)/i);
+                if (bv) browser += ' ' + bv[2];
+
+                // OS
+                if (/Windows NT 10/i.test(ua)) os = 'Windows 10/11';
+                else if (/Windows NT 6/i.test(ua)) os = 'Windows 7/8';
+                else if (/Mac OS X/i.test(ua)) os = 'macOS';
+                else if (/Android (\d+)/i.test(ua)) os = 'Android ' + RegExp.$1;
+                else if (/iPhone OS ([\d_]+)/i.test(ua)) os = 'iOS ' + RegExp.$1.replace(/_/g, '.');
+                else if (/Linux/i.test(ua)) os = 'Linux';
+
+                return { browser: browser, os: os, device: device };
+            }
+
+            function sendLog(duration) {
+                var ua = navigator.userAgent;
+                var parsed = parseUA(ua);
+                var baseData = {
+                    language: navigator.language || navigator.userLanguage || '',
+                    screen: screen.width + 'x' + screen.height,
+                    referrer: document.referrer || '',
+                    pageUrl: window.location.href,
+                    userAgent: ua,
+                    browser: parsed.browser,
+                    os: parsed.os,
+                    device: parsed.device,
+                    duration: duration || ''
+                };
+
+                // ipapi.co'dan IP + geo bilgisi çek, ardından log gönder
+                fetch('https://ipapi.co/json/', { cache: 'no-store' })
+                    .then(function (r) { return r.json(); })
+                    .then(function (geo) {
+                        var payload = Object.assign({}, baseData, {
+                            ip: geo.ip || '',
+                            country: geo.country_name || '',
+                            city: geo.city || '',
+                            region: geo.region || '',
+                            isp: geo.org || '',
+                            org: geo.asn || '',
+                            timezone: geo.timezone || ''
+                        });
+                        return fetch(APPS_SCRIPT_URL, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'text/plain' },
+                            body: JSON.stringify(payload)
+                        });
+                    })
+                    .catch(function () {
+                        // Geo alınamasa bile minimum veri gönder
+                        fetch(APPS_SCRIPT_URL, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'text/plain' },
+                            body: JSON.stringify(baseData)
+                        });
+                    });
+            }
+
+            // Sayfa yüklenince ilk logu gönder
+            window.addEventListener('load', function () {
+                sendLog('');
+            });
+
+            // Sayfa kapatılınca kalış süresini güncelle
+            window.addEventListener('beforeunload', function () {
+                var duration = Math.round((Date.now() - startTime) / 1000);
+                // beforeunload'da beacon daha güvenilir
+                var ua = navigator.userAgent;
+                var parsed = parseUA(ua);
+                var payload = JSON.stringify({
+                    language: navigator.language || '',
+                    screen: screen.width + 'x' + screen.height,
+                    referrer: document.referrer || '',
+                    pageUrl: window.location.href,
+                    userAgent: ua,
+                    browser: parsed.browser,
+                    os: parsed.os,
+                    device: parsed.device,
+                    duration: duration,
+                    durationOnly: true
+                });
+                if (navigator.sendBeacon) {
+                    navigator.sendBeacon(APPS_SCRIPT_URL, payload);
+                }
+            });
+        })();
+    </script>
+
 </body>
 
 </html>
