@@ -706,17 +706,19 @@
         }
     </script>
 
-    <!-- ══ CV VISITOR LOGGER ══
-         Ziyaretçi bilgilerini Google Sheets'e kaydeder.
-         Tracking ID değiştirmek için APPS_SCRIPT_URL'yi güncelle.
-    ══════════════════════════════ -->
+    <!-- ══ CV VISITOR LOGGER ══ -->
     <script>
         (function () {
-            // ── YAPILANDIR ──────────────────────────────────────────
-            var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzhgGvPUSjEEZxyTlmno3Q-KCy7IThGGf1NRJ9hrbM9Qaoc9KZBMYYjhQdNxumEQzJY/exec";
-            // ────────────────────────────────────────────────────────
+            var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzUE2hFPs4lGdynxbYJvTSCOeG8O0ynwTLjMwf-5vxQYxp-jr4mnlaZapAOgWIxk_d52A/exec";
+            var SECRET_TOKEN = "mav-cv-log-2026";
 
-            if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'BURAYA_WEB_APP_URL_YAPISTIR') return;
+            function isBot() {
+                if (navigator.webdriver) return true;
+                if (!navigator.languages || navigator.languages.length === 0) return true;
+                if (/bot|crawl|spider|headless|phantom|selenium|puppeteer|playwright/i.test(navigator.userAgent)) return true;
+                return false;
+            }
+            if (isBot()) return;
 
             var startTime = Date.now();
 
@@ -729,7 +731,7 @@
                 else if (/Chrome/i.test(ua)) browser = 'Chrome';
                 else if (/Firefox/i.test(ua)) browser = 'Firefox';
                 else if (/Safari/i.test(ua)) browser = 'Safari';
-                var bv = ua.match(/(Chrome|Firefox|Safari|Edg|OPR)[\/\s]([\d.]+)/i);
+                var bv = ua.match(/(Chrome|Firefox|Safari|Edg|OPR)[\\/\s]([\d.]+)/i);
                 if (bv) browser += ' ' + bv[2];
                 if (/Windows NT 10/i.test(ua)) os = 'Windows 10/11';
                 else if (/Windows NT 6/i.test(ua)) os = 'Windows 7/8';
@@ -740,10 +742,12 @@
                 return { browser: browser, os: os, device: device };
             }
 
-            function sendLog(duration) {
+            function sendLog(extra) {
                 var ua = navigator.userAgent;
                 var parsed = parseUA(ua);
-                var baseData = {
+                var base = Object.assign({
+                    token: SECRET_TOKEN,
+                    origin: window.location.origin,
                     language: navigator.language || '',
                     screen: screen.width + 'x' + screen.height,
                     referrer: document.referrer || '',
@@ -752,52 +756,38 @@
                     browser: parsed.browser,
                     os: parsed.os,
                     device: parsed.device,
-                    duration: duration || ''
-                };
+                    isBot: false
+                }, extra || {});
+
                 fetch('https://ipapi.co/json/', { cache: 'no-store' })
                     .then(function (r) { return r.json(); })
                     .then(function (geo) {
-                        var payload = Object.assign({}, baseData, {
-                            ip: geo.ip || '',
-                            country: geo.country_name || '',
-                            city: geo.city || '',
-                            region: geo.region || '',
-                            isp: geo.org || '',
-                            org: geo.asn || '',
-                            timezone: geo.timezone || ''
-                        });
                         return fetch(APPS_SCRIPT_URL, {
                             method: 'POST',
                             headers: { 'Content-Type': 'text/plain' },
-                            body: JSON.stringify(payload)
+                            body: JSON.stringify(Object.assign({}, base, {
+                                ip: geo.ip || '', country: geo.country_name || '',
+                                city: geo.city || '', region: geo.region || '',
+                                isp: geo.org || '', org: geo.asn || '', timezone: geo.timezone || ''
+                            }))
                         });
                     })
                     .catch(function () {
-                        fetch(APPS_SCRIPT_URL, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'text/plain' },
-                            body: JSON.stringify(baseData)
-                        });
+                        fetch(APPS_SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(base) });
                     });
             }
 
-            window.addEventListener('load', function () { sendLog(''); });
+            window.addEventListener('load', function () { sendLog({}); });
 
             window.addEventListener('beforeunload', function () {
-                var duration = Math.round((Date.now() - startTime) / 1000);
-                var ua = navigator.userAgent;
-                var parsed = parseUA(ua);
+                var dur = Math.round((Date.now() - startTime) / 1000);
+                var ua = navigator.userAgent; var parsed = parseUA(ua);
                 var payload = JSON.stringify({
-                    language: navigator.language || '',
-                    screen: screen.width + 'x' + screen.height,
-                    referrer: document.referrer || '',
-                    pageUrl: window.location.href,
-                    userAgent: ua,
-                    browser: parsed.browser,
-                    os: parsed.os,
-                    device: parsed.device,
-                    duration: duration,
-                    durationOnly: true
+                    token: SECRET_TOKEN, origin: window.location.origin,
+                    language: navigator.language || '', screen: screen.width + 'x' + screen.height,
+                    referrer: document.referrer || '', pageUrl: window.location.href,
+                    userAgent: ua, browser: parsed.browser, os: parsed.os,
+                    device: parsed.device, duration: dur, isBot: false
                 });
                 if (navigator.sendBeacon) navigator.sendBeacon(APPS_SCRIPT_URL, payload);
             });

@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzhgGvPUSjEEZxyTlmno3Q-KCy7IThGGf1NRJ9hrbM9Qaoc9KZBMYYjhQdNxumEQzJY/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzUE2hFPs4lGdynxbYJvTSCOeG8O0ynwTLjMwf-5vxQYxp-jr4mnlaZapAOgWIxk_d52A/exec";
+const SECRET_TOKEN = "mav-cv-log-2026";
 
 function parseUA(ua: string) {
     let browser = "Bilinmiyor", os = "Bilinmiyor", device = "Masaüstü";
@@ -24,15 +25,24 @@ function parseUA(ua: string) {
     return { browser, os, device };
 }
 
+/** Basit headless/bot tespiti */
+function detectBot(): boolean {
+    if (typeof navigator === "undefined") return true;
+    const ua = navigator.userAgent.toLowerCase();
+    if (/bot|crawl|spider|headless|phantom|selenium|puppeteer|playwright/i.test(ua)) return true;
+    if (navigator.webdriver) return true;
+    if (!navigator.languages || navigator.languages.length === 0) return true;
+    return false;
+}
+
 export default function VisitorTracker() {
     const tracked = useRef(false);
 
     useEffect(() => {
-        // Localhost'ta çalışmasın
         if (["localhost", "127.0.0.1"].includes(window.location.hostname)) return;
         if (tracked.current) return;
-        // Aynı sekme oturumunda bir kez kaydet
         if (sessionStorage.getItem("visitor_tracked")) return;
+        if (detectBot()) return;
 
         tracked.current = true;
 
@@ -40,6 +50,8 @@ export default function VisitorTracker() {
         const { browser, os, device } = parseUA(ua);
 
         const baseData = {
+            token: SECRET_TOKEN,
+            origin: window.location.origin,
             language: navigator.language || "",
             screen: `${screen.width}x${screen.height}`,
             referrer: document.referrer || "",
@@ -48,6 +60,7 @@ export default function VisitorTracker() {
             browser,
             os,
             device,
+            isBot: false,
         };
 
         fetch("https://ipapi.co/json/", { cache: "no-store" })
@@ -71,7 +84,6 @@ export default function VisitorTracker() {
                 });
             })
             .catch(() => {
-                // Geo alınamazsa sadece temel veriyi gönder
                 fetch(SCRIPT_URL, {
                     method: "POST",
                     mode: "no-cors",
