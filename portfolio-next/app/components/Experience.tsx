@@ -12,8 +12,9 @@ const experiences = [
         current: true,
         fullTime: true,
         bullets: [
-            "Force and moment measurement in CFD and comparison with EFD results.",
-            "Control and automation code development."
+            "Projects undertaken were conducted under confidentiality constraints. Public descriptions focus on methodologies and technical contributions.",
+            "Force and moment analysis in CFD simulations, including validation through experimental (EFD) data.",
+            "Development of control and automation algorithms for engineering applications."
         ],
     },
     {
