@@ -127,7 +127,7 @@ export default function Navbar() {
                     </a>
 
                     {/* Desktop Theme Toggle - Positioned right */}
-                    <div className="hidden md:flex items-center gap-3 pointer-events-auto">
+                    <div className="hidden md:flex items-center gap-3 pointer-events-auto mr-8">
                         <button onClick={toggleTheme}
                             className="flex items-center justify-center w-[38px] h-[38px] rounded-lg border transition-all duration-300 cursor-pointer"
                             style={{ borderColor: "var(--bdr)", color: "var(--t2)", background: "transparent" }}

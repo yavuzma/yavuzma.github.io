@@ -27,7 +27,7 @@ export default function Footer() {
                 </div>
 
                 {/* Socials - Right aligned */}
-                <div className="flex gap-3 relative z-10">
+                <div className="flex gap-3 relative z-10 mr-8">
                     {[
                         { icon: Github, href: "https://github.com/muhammetaliyavuz-itu", label: "GitHub" },
                         { icon: Linkedin, href: "https://www.linkedin.com/in/yavuzitu", label: "LinkedIn" },
