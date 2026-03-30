@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, CheckCircle } from "lucide-react";
 
 const certs = [
-    { category: "EXCHANGE", name: "ATHENS Network — TU Delft", sub: "TUD14 · Computer Aided Analysis & Optimization of Sustainable Electrical Power Systems · 9/10", color: "#22c55e", url: "https://register.athensnetwork.eu/verify" },
+    { category: "EXCHANGE", name: "ATHENS Network — TU Delft", color: "#22c55e", url: "https://register.athensnetwork.eu/verify" },
     { category: "CAD", name: "SolidWorks (CSWA)", color: "var(--bl)", url: "https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-9JG2FEML5U" },
     { category: "CAD", name: "AutoCAD Certificate", color: "var(--bl)", url: "https://coursera.org/verify/LXRP49PG83TZ" },
     { category: "PROGRAMMING", name: "Python (freeCodeCamp)", color: "var(--or)", url: "https://www.freecodecamp.org/certification/muhali-itu/scientific-computing-with-python-v7" },
