@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV — Muhammet Ali Yavuz</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -42,8 +40,43 @@
         }
 
         @media print {
-            body {
-                background: #fff;
+            html, body {
+                background: #fff !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Force every text element to pure black for the printed/downloaded CV */
+            body, body *,
+            h1, h2, h3, h4, h5, h6,
+            p, span, div, li, ul, a, strong, em, small {
+                color: #000 !important;
+            }
+
+            /* Keep section title underlines and header rule visible but neutral */
+            .section-title {
+                border-bottom-color: #000 !important;
+            }
+            .cv-header {
+                border-bottom-color: #000 !important;
+            }
+            .cv-footer {
+                border-top-color: #000 !important;
+            }
+
+            /* The website badge keeps a black background so white text stays readable */
+            .website-link {
+                background: #000 !important;
+                color: #fff !important;
+            }
+            .website-link, .website-link * {
+                color: #fff !important;
+            }
+
+            /* Interest tags: black text on light gray for print */
+            .interest-tag {
+                background: #eee !important;
+                color: #000 !important;
             }
 
             .cv-page {
@@ -644,93 +677,32 @@
     </div>
 
     <script>
+        // Use the browser's native print → "Save as PDF" so text stays as real,
+        // selectable text (no rasterization). This gives sharp output and
+        // letter-perfect black via the print CSS overrides above.
         async function downloadPDF() {
             const btn = document.getElementById('downloadBtn');
-            btn.textContent = '⏳ Generating...';
+            const original = btn.textContent;
+            btn.textContent = '⏳ Preparing...';
             btn.classList.add('loading');
 
-            const element = document.getElementById('cvPage');
-            element.style.boxShadow = 'none';
-
             try {
-                // Wait for fonts to be ready
                 await document.fonts.ready;
-
-                // Ensure all images are loaded
-                const images = Array.from(element.getElementsByTagName('img'));
-                await Promise.all(images.map(img => {
-                    if (img.complete) return Promise.resolve();
-                    return new Promise((resolve) => {
-                        img.onload = resolve;
-                        img.onerror = resolve;
-                    });
-                }));
-
-                // Small delay to ensure rendering is stable
                 await new Promise(r => setTimeout(r, 100));
-
-                // Capture element as canvas
-                const canvas = await html2canvas(element, {
-                    scale: 2,
-                    useCORS: true,
-                    allowTaint: true,
-                    backgroundColor: '#ffffff'
-                });
-
-                // Create exactly 1-page A4 PDF
-                const imgData = canvas.toDataURL('image/jpeg', 0.95);
-                const { jsPDF } = window.jspdf;
-                const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-                const pdfWidth = 210;
-                const pdfHeight = 297;
-                pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-
-                // --- ADD CLICKABLE LINKS ---
-                // We need to map HTML coordinates to PDF coordinates
-                // Scale factor: PDF width (210mm) / HTML element offsetWidth
-                const scaleFactor = pdfWidth / element.offsetWidth;
-
-                // Find all anchor tags in the CV
-                const links = element.getElementsByTagName('a');
-
-                // Offset of the cv-page relative to the viewport
-                const rectBase = element.getBoundingClientRect();
-
-                for (let i = 0; i < links.length; i++) {
-                    const link = links[i];
-                    if (!link.href) continue;
-
-                    const rect = link.getBoundingClientRect();
-
-                    // Calculate position relative to the cv-page element
-                    const x = (rect.left - rectBase.left) * scaleFactor;
-                    const y = (rect.top - rectBase.top) * scaleFactor;
-                    const w = rect.width * scaleFactor;
-                    const h = rect.height * scaleFactor;
-
-                    // Add link to PDF
-                    pdf.link(x, y, w, h, { url: link.href });
-                }
-
-                pdf.save('CV_Muhammet_Ali_Yavuz.pdf');
-
-                element.style.boxShadow = '';
-                btn.textContent = '✅ Downloaded!';
-                btn.classList.remove('loading');
-                setTimeout(() => { btn.textContent = '📄 Download PDF'; }, 2000);
-            } catch (e) {
-                console.error('PDF generation error:', e);
-                element.style.boxShadow = '';
-                btn.textContent = '❌ Error - try again';
+                window.print();
+            } finally {
+                btn.textContent = original;
                 btn.classList.remove('loading');
             }
         }
 
-        // Auto-download if opened with ?download=true
+        // Auto-trigger print when opened with ?download=true
         const params = new URLSearchParams(window.location.search);
         if (params.get('download') === 'true') {
             window.addEventListener('load', () => {
-                setTimeout(downloadPDF, 1500);
+                document.fonts.ready.then(() => {
+                    setTimeout(() => window.print(), 600);
+                });
             });
         }
     </script>
