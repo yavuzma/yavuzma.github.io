@@ -61,15 +61,6 @@ const skills = [
         color: "var(--cy)",
     },
     {
-        title: "Design & Modeling",
-        tags: [
-            { name: "SolidWorks", pct: 85 },
-            { name: "Rhinoceros 3D", pct: 90 },
-            { name: "AutoCAD", pct: 65 },
-        ],
-        color: "var(--bl)",
-    },
-    {
         title: "Programming",
         tags: [
             { name: "C / C++", pct: 65 },
@@ -78,6 +69,15 @@ const skills = [
             { name: "Arduino", pct: 70 },
         ],
         color: "var(--or)",
+    },
+    {
+        title: "Design & Modeling",
+        tags: [
+            { name: "SolidWorks", pct: 85 },
+            { name: "Rhinoceros 3D", pct: 90 },
+            { name: "AutoCAD", pct: 65 },
+        ],
+        color: "var(--bl)",
     },
     {
         title: "Languages",
