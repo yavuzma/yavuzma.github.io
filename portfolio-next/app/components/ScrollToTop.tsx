@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
+import { smoothScrollTo } from "../lib/lenis";
 
 export default function ScrollToTop() {
     const [visible, setVisible] = useState(false);
@@ -16,7 +17,7 @@ export default function ScrollToTop() {
 
     return (
         <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => smoothScrollTo(0, 0)}
             className="scroll-top-btn fixed bottom-8 right-8 z-50 flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 cursor-pointer"
             style={{
                 background: "var(--cy)",

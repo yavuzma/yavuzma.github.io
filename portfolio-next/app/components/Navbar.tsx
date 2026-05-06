@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Sun, Moon, Menu, X } from "lucide-react";
+import { smoothScrollTo } from "../lib/lenis";
 
 const navLinks = [
     { href: "#about", label: "About" },
@@ -71,8 +72,7 @@ export default function Navbar() {
     };
 
     const scrollTo = (href: string) => {
-        const el = document.querySelector(href);
-        if (el) window.scrollTo({ top: (el as HTMLElement).offsetTop - 75, behavior: "smooth" });
+        smoothScrollTo(href);
         setMenuOpen(false);
     };
 
@@ -127,7 +127,7 @@ export default function Navbar() {
 
                 <div className="w-full px-8 md:px-24 flex items-center justify-between h-[68px] relative pointer-events-none">
                     {/* Logo - Positioned left */}
-                    <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                    <a href="#" onClick={(e) => { e.preventDefault(); smoothScrollTo(0, 0); }}
                         className="text-lg font-bold tracking-wide flex items-center gap-1 group pointer-events-auto"
                         style={{ fontFamily: "var(--fh)" }}>
                         <span style={{ color: "var(--cy)" }} className="group-hover:scale-110 inline-block transition-transform">[</span>

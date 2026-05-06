@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import DownloadCVButton from "./DownloadCVButton";
+import { smoothScrollTo } from "../lib/lenis";
 
 const ROLES = [
     "Naval Architect",
@@ -255,7 +256,7 @@ export default function Hero() {
                 {/* CTA Buttons — expanded gap and enhanced glow */}
                 <div className="flex justify-center gap-6 flex-wrap mt-8" style={{ animation: "fadeUp 0.7s ease 0.55s both" }}>
                     <a href="#projects"
-                        onClick={(e) => { e.preventDefault(); const el = document.querySelector("#projects"); if (el) window.scrollTo({ top: (el as HTMLElement).offsetTop - 75, behavior: "smooth" }); }}
+                        onClick={(e) => { e.preventDefault(); smoothScrollTo("#projects"); }}
                         onMouseMove={handleMagnetic} onMouseLeave={(e) => { resetMagnetic(e); e.currentTarget.style.boxShadow = "0 4px 20px rgba(34,211,238,0.25)"; e.currentTarget.style.transform = "scale(1)"; }}
                         onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 12px 40px rgba(34,211,238,0.6)"; e.currentTarget.style.transform = "scale(1.05)"; }}
                         className="inline-flex items-center gap-2 rounded-full transition-all duration-300"
