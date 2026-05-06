@@ -11,7 +11,7 @@ const RULE = "#0f4c75";      // section underlines / dividers
 const s = StyleSheet.create({
     page: {
         paddingTop: 32,
-        paddingBottom: 28,
+        paddingBottom: 56,
         paddingHorizontal: 40,
         fontFamily: "Helvetica",
         fontSize: 9.5,
@@ -159,14 +159,35 @@ const s = StyleSheet.create({
     // Activities
     activitiesText: { fontSize: 8.5, color: INK, lineHeight: 1.55 },
 
-    // Footer
+    // Footer (fixed at the bottom of every page)
     footer: {
-        marginTop: 12,
+        position: "absolute",
+        bottom: 14,
+        left: 40,
+        right: 40,
         paddingTop: 6,
         borderTopWidth: 1,
         borderTopColor: "#d0d7de",
         flexDirection: "column",
         alignItems: "center",
+    },
+
+    // Page-2 continuation header
+    page2Title: {
+        fontFamily: "Helvetica-Bold",
+        fontSize: 14,
+        color: PRIMARY,
+        borderBottomWidth: 1.5,
+        borderBottomColor: PRIMARY,
+        paddingBottom: 5,
+        marginBottom: 12,
+    },
+    continuationNote: {
+        fontSize: 8,
+        color: MUTED,
+        fontFamily: "Helvetica-Oblique",
+        marginTop: -8,
+        marginBottom: 14,
     },
     footerLinks: {
         fontSize: 8,
@@ -339,18 +360,6 @@ export default function CVDocument() {
                                     Submarine hydrodynamics: AFF1/AFF3/AFF8 configurations, 0.5% deviation, ITTC uncertainty assessment
                                 </Text>
                             </View>
-                            <View style={s.projItem}>
-                                <Text style={s.projName}>Offshore Platform — Design & Analysis</Text>
-                                <Text style={s.projDesc}>
-                                    Full concept: Rhinoceros 3D modeling + Maxsurf stability analysis + ANSYS Fluent CFD, 70x40m deck
-                                </Text>
-                            </View>
-                            <View style={s.projItem}>
-                                <Text style={s.projName}>Alicat Mass Flow Controller — Control Interface</Text>
-                                <Text style={s.projDesc}>
-                                    Production-grade Python desktop app with AsyncIO, real-time serial monitoring & automated data logging
-                                </Text>
-                            </View>
                         </View>
                     </View>
 
@@ -414,8 +423,39 @@ export default function CVDocument() {
                     </View>
                 </View>
 
-                {/* FOOTER */}
-                <View style={s.footer}>
+                {/* PAGE 2 — KEY PROJECTS CONTINUED */}
+                <View break>
+                    <Text style={s.page2Title}>Key Projects (continued)</Text>
+                    <Text style={s.continuationNote}>
+                        Muhammet Ali Yavuz — Curriculum Vitae · Page 2
+                    </Text>
+
+                    <View style={s.projItem}>
+                        <Text style={s.projName}>Offshore Platform — Design &amp; Analysis</Text>
+                        <Text style={s.projDesc}>
+                            Full concept design of an offshore platform with a 70 × 40 m operational deck.
+                            Hull and superstructure modeled in Rhinoceros 3D; intact and damaged stability
+                            assessed in Maxsurf Stability against IMO criteria; environmental loads
+                            (wind, wave and current) and surrounding flow patterns evaluated with ANSYS
+                            Fluent CFD to verify structural and operational margins. Deliverables included
+                            general arrangement, weight breakdown and a stability booklet.
+                        </Text>
+                    </View>
+
+                    <View style={s.projItem}>
+                        <Text style={s.projName}>Alicat Mass Flow Controller — Control Interface</Text>
+                        <Text style={s.projDesc}>
+                            Production-grade Python desktop application for laboratory mass-flow control:
+                            AsyncIO-based serial communication for non-blocking I/O, real-time monitoring
+                            with live plotting, automated CSV data logging and a Tkinter UI optimized for
+                            long-duration experiments. Designed for reliability under continuous use, with
+                            recovery on transient communication errors and configurable sampling rates.
+                        </Text>
+                    </View>
+                </View>
+
+                {/* FOOTER (shown on every page) */}
+                <View style={s.footer} fixed>
                     <Text style={s.footerLinks}>
                         <Link src="https://yavuzma.github.io" style={s.link}>yavuzma.github.io</Link>
                         <Text>   ·   </Text>
