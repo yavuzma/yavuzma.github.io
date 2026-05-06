@@ -41,7 +41,8 @@ export default function DownloadCVButton({
             URL.revokeObjectURL(url);
         } catch (err) {
             console.error("PDF generation failed:", err);
-            alert("PDF oluşturulamadı, lütfen tekrar deneyin.");
+            const msg = err instanceof Error ? err.message : String(err);
+            alert("PDF oluşturulamadı.\n\nHata: " + msg + "\n\nKonsol (F12) içinde detayları görebilirsiniz.");
         } finally {
             setBusy(false);
         }
