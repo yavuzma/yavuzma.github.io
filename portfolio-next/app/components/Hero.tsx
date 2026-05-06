@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import DownloadCVButton from "./DownloadCVButton";
 
 const ROLES = [
     "Naval Architect",
@@ -102,7 +103,7 @@ export default function Hero() {
     const subRef = useRef<HTMLDivElement>(null);
     const blipRef = useRef<HTMLDivElement>(null);
 
-    const handleMagnetic = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    const handleMagnetic = useCallback((e: React.MouseEvent<HTMLElement>) => {
         const el = e.currentTarget;
         const rect = el.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
@@ -110,7 +111,7 @@ export default function Hero() {
         el.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
     }, []);
 
-    const resetMagnetic = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    const resetMagnetic = useCallback((e: React.MouseEvent<HTMLElement>) => {
         e.currentTarget.style.transform = "translate(0, 0)";
     }, []);
 
@@ -261,14 +262,13 @@ export default function Hero() {
                         style={{ padding: "1rem 2.2rem", background: "linear-gradient(135deg, var(--cy), var(--bl))", color: "#fff", fontFamily: "var(--fb)", fontSize: "0.9rem", fontWeight: 600, letterSpacing: "0.5px", boxShadow: "0 4px 20px rgba(34,211,238,0.25)" }}>
                         View Projects →
                     </a>
-                    <a href="/docs/cv.html?download=true" target="_blank"
+                    <DownloadCVButton
                         onMouseMove={handleMagnetic}
                         onMouseLeave={(e) => { resetMagnetic(e); e.currentTarget.style.borderColor = "rgba(148,163,184,0.2)"; e.currentTarget.style.color = "var(--t1)"; e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "scale(1)"; }}
                         onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--cy)"; e.currentTarget.style.color = "var(--cy)"; e.currentTarget.style.background = "rgba(34,211,238,0.08)"; e.currentTarget.style.boxShadow = "0 0 20px rgba(34,211,238,0.2) inset"; e.currentTarget.style.transform = "scale(1.05)"; }}
-                        className="inline-flex items-center gap-2 rounded-full border transition-all duration-300"
-                        style={{ padding: "1rem 2.2rem", borderColor: "rgba(148,163,184,0.2)", color: "var(--t1)", fontFamily: "var(--fb)", fontSize: "0.9rem", fontWeight: 600, letterSpacing: "0.5px", backdropFilter: "blur(8px)", background: "rgba(255,255,255,0.04)" }}>
-                        Download CV ↓
-                    </a>
+                        className="inline-flex items-center gap-2 rounded-full border transition-all duration-300 cursor-pointer"
+                        style={{ padding: "1rem 2.2rem", borderColor: "rgba(148,163,184,0.2)", color: "var(--t1)", fontFamily: "var(--fb)", fontSize: "0.9rem", fontWeight: 600, letterSpacing: "0.5px", backdropFilter: "blur(8px)", background: "rgba(255,255,255,0.04)" }}
+                    />
                 </div>
             </div>
 
