@@ -31,12 +31,13 @@ const s = StyleSheet.create({
     name: {
         fontFamily: "Helvetica-Bold",
         fontSize: 22,
-        letterSpacing: -0.5,
-        marginBottom: 2,
+        lineHeight: 1.15,
+        marginBottom: 6,
     },
     subtitle: {
         fontSize: 10.5,
-        marginBottom: 6,
+        lineHeight: 1.3,
+        marginBottom: 8,
     },
     portfolioBadge: {
         backgroundColor: BLACK,
