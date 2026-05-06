@@ -10,13 +10,13 @@ const RULE = "#0f4c75";      // section underlines / dividers
 
 const s = StyleSheet.create({
     page: {
-        paddingTop: 28,
-        paddingBottom: 22,
-        paddingHorizontal: 38,
+        paddingTop: 32,
+        paddingBottom: 28,
+        paddingHorizontal: 40,
         fontFamily: "Helvetica",
-        fontSize: 9,
+        fontSize: 9.5,
         color: INK,
-        lineHeight: 1.4,
+        lineHeight: 1.45,
     },
 
     // Header
@@ -77,30 +77,41 @@ const s = StyleSheet.create({
     side: { width: 158, flexShrink: 0 },
 
     // Sections
-    section: { marginBottom: 8 },
+    section: { marginBottom: 10 },
     sectionTitle: {
         fontFamily: "Helvetica-Bold",
-        fontSize: 9.5,
+        fontSize: 10,
         letterSpacing: 1.2,
         textTransform: "uppercase",
         color: PRIMARY,
         borderBottomWidth: 1.2,
         borderBottomColor: "#d0d7de",
         paddingBottom: 2,
-        marginBottom: 5,
+        marginBottom: 6,
     },
 
-    // Row layout for entry headers (title left, date right) — wrappable
+    // Two-line entry: line1 = role/degree (bold, INK) + date right; line2 = company/university (bold, PRIMARY)
     entryHeader: {
         flexDirection: "row",
+        alignItems: "flex-start",
         justifyContent: "space-between",
-        alignItems: "flex-end",
-        gap: 8,
+        gap: 10,
         marginBottom: 1,
     },
-    entryTitleWrap: { flexShrink: 1, flexGrow: 1 },
+    entryRole: {
+        fontFamily: "Helvetica-Bold",
+        fontSize: 9.5,
+        color: INK,
+        flexShrink: 1,
+    },
+    entrySubtitle: {
+        fontFamily: "Helvetica-Bold",
+        fontSize: 9,
+        color: PRIMARY,
+        marginBottom: 1,
+    },
     entryDate: {
-        fontSize: 7.5,
+        fontSize: 8,
         color: MUTED,
         flexShrink: 0,
     },
@@ -109,49 +120,66 @@ const s = StyleSheet.create({
     italic: { fontFamily: "Helvetica-Oblique" },
 
     // Education
-    eduTitle: { fontSize: 9 },
-    eduDegree: { fontFamily: "Helvetica-Bold", color: INK },
-    eduUni: { fontFamily: "Helvetica-Bold", color: PRIMARY },
-    eduDetails: { fontSize: 8, marginTop: 1, color: INK },
+    eduDetails: { fontSize: 8.5, marginTop: 1, color: INK, lineHeight: 1.5 },
     eduHighlight: { fontFamily: "Helvetica-Bold", color: PRIMARY },
 
     // Experience
-    expItem: { marginBottom: 5 },
-    expTitle: { fontSize: 9, fontFamily: "Helvetica-Bold", color: INK },
-    expCompany: { fontFamily: "Helvetica-Bold", color: PRIMARY },
-    expConfidential: { fontSize: 8, fontFamily: "Helvetica-Oblique", color: MUTED, marginTop: 1 },
-    expBullet: { fontSize: 8, marginTop: 1, marginLeft: 8, color: INK },
+    expItem: { marginBottom: 7 },
+    expConfidential: { fontSize: 8, fontFamily: "Helvetica-Oblique", color: MUTED, marginTop: 1, marginBottom: 1 },
+    expBullet: { fontSize: 8.5, marginTop: 1, marginLeft: 8, color: INK, lineHeight: 1.5 },
 
     // Projects
-    projItem: { marginBottom: 3 },
-    projName: { fontFamily: "Helvetica-Bold", fontSize: 8.5, color: INK },
-    projDesc: { fontSize: 7.5, marginTop: 0.5, color: INK },
+    projItem: { marginBottom: 4 },
+    projName: { fontFamily: "Helvetica-Bold", fontSize: 9, color: INK },
+    projDesc: { fontSize: 8, marginTop: 1, color: INK, lineHeight: 1.45 },
 
     // Skills
-    skillGroup: { marginBottom: 4 },
+    skillGroup: { marginBottom: 5 },
     skillLabel: { fontFamily: "Helvetica-Bold", fontSize: 8.5, marginBottom: 1, color: INK },
-    skillItems: { fontSize: 8, color: INK },
+    skillItems: { fontSize: 8, color: INK, lineHeight: 1.45 },
 
     // Languages
-    langItem: { fontSize: 8, marginBottom: 1, color: INK },
+    langItem: { fontSize: 8.5, marginBottom: 2, color: INK },
 
     // Certifications
-    certItem: { fontSize: 8, marginBottom: 1.5, color: INK },
+    certItem: { fontSize: 8.5, marginBottom: 2, color: INK },
     certVerify: { fontSize: 6.5, fontFamily: "Courier", color: MUTED, marginTop: 0.5, marginLeft: 8 },
 
     // Interests — colored chips
     interestRow: { flexDirection: "row", flexWrap: "wrap", gap: 3 },
     interestTag: {
-        fontSize: 7,
+        fontSize: 7.5,
         backgroundColor: "#e8f4f8",
         color: PRIMARY,
-        paddingVertical: 1.5,
+        paddingVertical: 2,
         paddingHorizontal: 5,
         borderRadius: 2,
     },
 
     // Activities
-    activitiesText: { fontSize: 8, color: INK, lineHeight: 1.5 },
+    activitiesText: { fontSize: 8.5, color: INK, lineHeight: 1.55 },
+
+    // Footer
+    footer: {
+        marginTop: 12,
+        paddingTop: 6,
+        borderTopWidth: 1,
+        borderTopColor: "#d0d7de",
+        flexDirection: "column",
+        alignItems: "center",
+    },
+    footerLinks: {
+        fontSize: 8,
+        color: MUTED,
+        textAlign: "center",
+        marginBottom: 2,
+    },
+    footerNote: {
+        fontSize: 7.5,
+        color: MUTED,
+        fontFamily: "Helvetica-Oblique",
+        textAlign: "center",
+    },
 });
 
 const Bullet = ({ children }: { children: React.ReactNode }) => (
@@ -218,32 +246,22 @@ export default function CVDocument() {
                             <Text style={s.sectionTitle}>Education</Text>
 
                             <View style={s.entryHeader}>
-                                <View style={s.entryTitleWrap}>
-                                    <Text style={s.eduTitle}>
-                                        <Text style={s.eduDegree}>BSc Shipbuilding & Ocean Engineering</Text>
-                                        <Text> — </Text>
-                                        <Text style={s.eduUni}>Istanbul Technical University</Text>
-                                    </Text>
-                                </View>
+                                <Text style={s.entryRole}>BSc Shipbuilding &amp; Ocean Engineering</Text>
                                 <Text style={s.entryDate}>Sep 2021 – Jul 2026 (exp.)</Text>
                             </View>
+                            <Text style={s.entrySubtitle}>Istanbul Technical University</Text>
                             <Text style={s.eduDetails}>
                                 GPA: 3.26 / 4.0   ·   <Text style={s.eduHighlight}>5-Year Program (Including 1-Year English Preparatory)</Text>{"\n"}
                                 ITU Shipbuilding Engineering Club · ITU SAVTEK — Defense Technologies
                             </Text>
 
-                            <View style={[s.entryHeader, { marginTop: 4 }]}>
-                                <View style={s.entryTitleWrap}>
-                                    <Text style={s.eduTitle}>
-                                        <Text style={s.eduDegree}>ATHENS Exchange Programme</Text>
-                                        <Text> — </Text>
-                                        <Text style={s.eduUni}>Delft University of Technology</Text>
-                                    </Text>
-                                </View>
+                            <View style={[s.entryHeader, { marginTop: 6 }]}>
+                                <Text style={s.entryRole}>ATHENS Exchange Programme</Text>
                                 <Text style={s.entryDate}>14–21 Mar 2026</Text>
                             </View>
+                            <Text style={s.entrySubtitle}>Delft University of Technology</Text>
                             <Text style={s.eduDetails}>
-                                TUD14: Computer Aided Analysis & Optimization of Sustainable Electrical Power Systems{"\n"}
+                                TUD14: Computer Aided Analysis &amp; Optimization of Sustainable Electrical Power Systems{"\n"}
                                 <Text style={s.eduHighlight}>Local Mark: 9/10 · ATHENS Network (</Text>
                                 <Link src="https://athensnetwork.eu" style={[s.link, s.bold]}>athensnetwork.eu</Link>
                                 <Text style={s.eduHighlight}>)</Text>
@@ -256,15 +274,10 @@ export default function CVDocument() {
 
                             <View style={s.expItem}>
                                 <View style={s.entryHeader}>
-                                    <View style={s.entryTitleWrap}>
-                                        <Text style={s.expTitle}>
-                                            <Text>CFD Engineer & Software Developer</Text>
-                                            <Text> — </Text>
-                                            <Text style={s.expCompany}>ITUKAT</Text>
-                                        </Text>
-                                    </View>
+                                    <Text style={s.entryRole}>CFD Engineer &amp; Software Developer</Text>
                                     <Text style={s.entryDate}>Aug 2025 – Present · Full-time</Text>
                                 </View>
+                                <Text style={s.entrySubtitle}>ITUKAT</Text>
                                 <Text style={s.expConfidential}>
                                     Projects undertaken were conducted under confidentiality constraints. Public descriptions focus on methodologies and technical contributions.
                                 </Text>
@@ -274,30 +287,20 @@ export default function CVDocument() {
 
                             <View style={s.expItem}>
                                 <View style={s.entryHeader}>
-                                    <View style={s.entryTitleWrap}>
-                                        <Text style={s.expTitle}>
-                                            <Text>Curious Student</Text>
-                                            <Text> — </Text>
-                                            <Text style={s.expCompany}>ITU Ata Nutku Towing Tank</Text>
-                                        </Text>
-                                    </View>
+                                    <Text style={s.entryRole}>Curious Student</Text>
                                     <Text style={s.entryDate}>Sep 2024 – Present</Text>
                                 </View>
+                                <Text style={s.entrySubtitle}>ITU Ata Nutku Towing Tank</Text>
                                 <Bullet>Participated in resistance, propulsion, and seakeeping experiments</Bullet>
                                 <Bullet>Hands-on experience in towing tank testing procedures and maritime experimental methods</Bullet>
                             </View>
 
                             <View style={s.expItem}>
                                 <View style={s.entryHeader}>
-                                    <View style={s.entryTitleWrap}>
-                                        <Text style={s.expTitle}>
-                                            <Text>Production Engineer</Text>
-                                            <Text> — </Text>
-                                            <Text style={s.expCompany}>Besiktas Shipyard</Text>
-                                        </Text>
-                                    </View>
+                                    <Text style={s.entryRole}>Production Engineer</Text>
                                     <Text style={s.entryDate}>Aug – Sep 2024 · Full-time Internship</Text>
                                 </View>
+                                <Text style={s.entrySubtitle}>Besiktas Shipyard</Text>
                                 <Bullet>Inspection and maintenance of main engines, hydraulic systems, and generators</Bullet>
                                 <Bullet>Air compressor overhaul, marine pump maintenance including ballast water treatment</Bullet>
                                 <Bullet>Welding, pipe installation, and surface coating experience</Bullet>
@@ -305,15 +308,10 @@ export default function CVDocument() {
 
                             <View style={s.expItem}>
                                 <View style={s.entryHeader}>
-                                    <View style={s.entryTitleWrap}>
-                                        <Text style={s.expTitle}>
-                                            <Text>Mechanical Engineer</Text>
-                                            <Text> — </Text>
-                                            <Text style={s.expCompany}>MENSA MAKINA</Text>
-                                        </Text>
-                                    </View>
+                                    <Text style={s.entryRole}>Mechanical Engineer</Text>
                                     <Text style={s.entryDate}>Aug – Sep 2023 · Full-time Internship</Text>
                                 </View>
+                                <Text style={s.entrySubtitle}>MENSA MAKINA</Text>
                                 <Bullet>Designed and installed a complete ventilation system for a sheet metal processing line</Bullet>
                                 <Bullet>Fabricated sheet metal components: pipes, flanges, and air filters</Bullet>
                             </View>
@@ -414,6 +412,18 @@ export default function CVDocument() {
                             </Text>
                         </View>
                     </View>
+                </View>
+
+                {/* FOOTER */}
+                <View style={s.footer}>
+                    <Text style={s.footerLinks}>
+                        <Link src="https://yavuzma.github.io" style={s.link}>yavuzma.github.io</Link>
+                        <Text>   ·   </Text>
+                        <Link src="https://github.com/yavuzma" style={s.link}>github.com/yavuzma</Link>
+                        <Text>   ·   </Text>
+                        <Link src="https://linkedin.com/in/yavuzitu" style={s.link}>linkedin.com/in/yavuzitu</Link>
+                    </Text>
+                    <Text style={s.footerNote}>References available upon request</Text>
                 </View>
             </Page>
         </Document>
