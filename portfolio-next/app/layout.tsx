@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     "Ocean Engineering",
     "Istanbul Technical University",
     "Ship Design",
+    "OpenFOAM",
     "STAR-CCM+",
     "ANSYS Fluent",
   ],

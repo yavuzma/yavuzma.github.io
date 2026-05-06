@@ -66,7 +66,7 @@ export default function CVPage() {
                             <ul className="text-[0.85rem] text-slate-800 space-y-4">
                                 <li className="font-bold">
                                     Computational Fluid Dynamics (CFD)
-                                    <p className="text-xs text-slate-500 font-medium mt-1 leading-relaxed">STAR-CCM+, ANSYS Fluent, OpenFOAM, Maxsurf</p>
+                                    <p className="text-xs text-slate-500 font-medium mt-1 leading-relaxed">OpenFOAM, STAR-CCM+, ANSYS Fluent, Maxsurf</p>
                                 </li>
                                 <li className="font-bold">
                                     Ship Design & 3D Modeling

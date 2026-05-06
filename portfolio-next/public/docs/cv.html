@@ -53,6 +53,16 @@
                 color: #000 !important;
             }
 
+            /* Keep links visually distinguishable in the PDF — black, but underlined */
+            a, a:visited {
+                text-decoration: underline !important;
+                text-underline-offset: 2px;
+            }
+            /* The portfolio badge is already styled as a button — no underline */
+            .website-link, .website-link * {
+                text-decoration: none !important;
+            }
+
             /* Keep section title underlines and header rule visible but neutral */
             .section-title {
                 border-bottom-color: #000 !important;
@@ -442,7 +452,7 @@
                 <div class="contact-info">
                     <div class="contact-item"><span class="ci">✉</span> <a
                             href="mailto:yavuzmu21@itu.edu.tr">yavuzmu21@itu.edu.tr</a></div>
-                    <div class="contact-item"><span class="ci">☎</span> +90 551 092 9667</div>
+                    <div class="contact-item"><span class="ci">☎</span> <a href="tel:+905510929667">+90 551 092 9667</a></div>
                     <div class="contact-item"><span class="ci">🔗</span> <a
                             href="https://linkedin.com/in/yavuzitu">linkedin.com/in/yavuzitu</a></div>
                     <div class="contact-item"><span class="ci">💻</span> <a
@@ -487,7 +497,7 @@
                             TUD14: Computer Aided Analysis &amp; Optimization of Sustainable Electrical Power
                             Systems<br>
                             <span style="font-weight: 600; color: #0f4c75;">Local Mark: 9/10 · ATHENS Network
-                                (athensnetwork.eu)</span>
+                                (<a href="https://athensnetwork.eu" target="_blank">athensnetwork.eu</a>)</span>
                         </div>
                     </div>
 
@@ -599,7 +609,7 @@
 
                         <div class="skill-group">
                             <div class="skill-label">Analysis</div>
-                            <div class="skill-items">ANSYS Fluent, STAR-CCM+, Maxsurf</div>
+                            <div class="skill-items">OpenFOAM, ANSYS Fluent, STAR-CCM+, Maxsurf</div>
                         </div>
 
                         <div class="skill-group">

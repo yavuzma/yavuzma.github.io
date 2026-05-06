@@ -53,6 +53,7 @@ const skills = [
     {
         title: "Analysis",
         tags: [
+            { name: "OpenFOAM", pct: 25 },
             { name: "ANSYS Fluent", pct: 70 },
             { name: "STAR-CCM+", pct: 85 },
             { name: "Maxsurf", pct: 80 },
