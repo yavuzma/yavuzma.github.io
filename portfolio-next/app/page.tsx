@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Hero from "@/app/components/Hero";
+import ToolsMarquee from "@/app/components/ToolsMarquee";
 import About from "@/app/components/About";
 import Experience from "@/app/components/Experience";
 import Projects from "@/app/components/Projects";
@@ -27,6 +28,7 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
+      <ToolsMarquee />
       <About />
       <Experience />
       <Projects onOpenModal={openModal} />

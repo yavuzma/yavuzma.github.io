@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import DownloadCVButton from "./DownloadCVButton";
 import { smoothScrollTo } from "../lib/lenis";
+import Spotlight from "./Spotlight";
 
 const ROLES = [
     "Naval Architect",
@@ -228,6 +229,9 @@ export default function Hero() {
 
             {/* Grid overlay */}
             <div className="grid-bg absolute inset-0 pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(34,211,238,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,.025) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
+
+            {/* Cursor-following spotlight */}
+            <Spotlight color="rgba(34, 211, 238, 0.14)" size={620} />
 
             {/* HERO CONTENT */}
             <div className="relative z-10 text-center max-w-3xl mx-auto">
