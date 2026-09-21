@@ -38,6 +38,8 @@ export interface ProjectModalSection {
 
 export interface Project {
     id: string;
+    // One-line summary used by the CV (PDF and /cv page).
+    cv: { title: string; line: string };
     title: string;
     shortDesc: string;
     badge: string;
@@ -58,6 +60,7 @@ export interface Project {
 export const projects: Project[] = [
     {
         id: "tcsg",
+        cv: { title: "TCSG FISILTI - Hybrid Coast Guard Vessel (capstone design)", line: "69.5 m hybrid vessel with counter-rotating Azipod propulsion; 24 kn maximum speed, 63 crew." },
         title: "Capstone Design Project - TCSG FISILTI (WHISPER)",
         shortDesc:
             "Designed for surveillance, environmental response, and special ops, this 69.5m hybrid vessel features Azipod propulsion and extensive mission equipment.",
@@ -158,6 +161,7 @@ export const projects: Project[] = [
     },
     {
         id: "alicat",
+        cv: { title: "Alicat Mass Flow Controller - Control Interface", line: "Python desktop app: AsyncIO serial I/O, real-time monitoring, automated test sequences, data logging." },
         title: "Alicat Mass Flow Controller - Control Interface",
         shortDesc:
             "Desktop app for real-time control, monitoring, and automated data logging.",
@@ -225,6 +229,7 @@ export const projects: Project[] = [
     },
     {
         id: "kcs",
+        cv: { title: "KCS Hull with Rudder - CFD Resistance", line: "Unsteady RANS + VOF in STAR-CCM+; five-run sensitivity study; -2.7% to +0.8% deviation from EFD." },
         title: "KCS Hull with Rudder - Resistance Prediction",
         shortDesc:
             "Free surface CFD of KCS container ship with rudder. Unsteady RANS with VOF across 3 mesh levels.",
@@ -305,6 +310,7 @@ export const projects: Project[] = [
     },
     {
         id: "darpa",
+        cv: { title: "DARPA SUBOFF - Appendage Resistance", line: "STAR-CCM+ resistance of AFF1, AFF3 and AFF8; 0.5% deviation from EFD; ITTC uncertainty assessment." },
         title: "DARPA SUBOFF - Appendage Resistance",
         shortDesc:
             "Submarine appendage resistance: AFF1, AFF3, AFF8 configurations per ITTC guidelines.",
@@ -374,6 +380,7 @@ export const projects: Project[] = [
     },
     {
         id: "offshore",
+        cv: { title: "Offshore Platform - Concept Design", line: "Semi-submersible concept with a 70 × 40 m deck; Rhinoceros 3D modelling, Maxsurf stability and ANSYS Fluent CFD." },
         title: "Offshore Platform - Design & Analysis",
         shortDesc:
             "Full platform concept: Rhinoceros 3D modeling, Maxsurf stability, ANSYS Fluent CFD.",

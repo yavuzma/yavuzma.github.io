@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated at build time by scripts/build-cv.tsx
+/public/Muhammet-Ali-Yavuz-CV.pdf

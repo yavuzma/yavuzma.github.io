@@ -1,201 +1,89 @@
-"use client";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { profile, education, experience, skills, languages, certifications, memberships, activities, interests, cvHref, cvFileName } from "../data/cv";
+import { projects } from "../data/projects";
 
-import { useEffect } from "react";
-import Head from "next/head";
+// HTML version of the CV. It reads the same data as the PDF (app/data/cv.ts), so the two cannot drift apart.
+
+export const metadata: Metadata = {
+    title: `CV - ${profile.name}`,
+    description: `CV of ${profile.name}, ${profile.title}.`,
+    alternates: { canonical: "/cv/" },
+};
+
+const CV_PROJECTS = ["kcs", "darpa", "tcsg", "alicat"];
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+    return (
+        <section className="cv-section">
+            <h2>{title}</h2>
+            {children}
+        </section>
+    );
+}
 
 export default function CVPage() {
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            // Apply a global white background for this page
-            document.body.style.background = "#fff";
-            document.body.style.color = "#000";
-
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get("download") === "true") {
-                // Short timeout to ensure styles load
-                setTimeout(() => {
-                    window.print();
-                }, 600);
-            }
-        }
-    }, []);
+    const cvProjects = CV_PROJECTS.map((id) => projects.find((p) => p.id === id)).filter((p) => p !== undefined);
 
     return (
-        <div className="bg-white text-black min-h-screen font-sans selection:bg-blue-100 py-10" style={{ background: "#f8f9fa", fontFamily: "var(--fb), sans-serif" }}>
-            <div
-                className="mx-auto bg-white shadow-2xl print:shadow-none print:m-0 print:p-0 relative"
-                style={{
-                    width: "210mm",
-                    minHeight: "297mm",
-                    padding: "16mm 16mm",
-                    boxSizing: "border-box"
-                }}
-            >
-                {/* Header */}
-                <header className="border-b-2 border-slate-800 pb-5 mb-8">
-                    <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight uppercase" style={{ fontFamily: "var(--fh)" }}>
-                        Muhammet Ali Yavuz
-                    </h1>
-                    <div className="flex flex-wrap justify-between items-end mt-3">
-                        <p className="text-xl font-bold text-slate-700">Naval Architect and Ocean Engineer</p>
-                        <div className="text-xs font-semibold text-slate-500 text-right uppercase tracking-widest leading-relaxed">
-                            <p>Born: August 2003</p>
-                            <p>Lisbon, Portugal</p>
-                            <p>Available from August 2027</p>
-                            <p className="text-black">yavuzma.github.io</p>
-                        </div>
-                    </div>
+        <main className="cv-page">
+            <nav className="cv-actions" aria-label="CV actions">
+                <Link href="/">← {profile.website.label}</Link>
+                <a href={cvHref} download={cvFileName} className="cv-download">Download PDF</a>
+            </nav>
+
+            <article className="cv-sheet">
+                <header>
+                    <h1>{profile.name}</h1>
+                    <p className="cv-title">{profile.title}</p>
+                    <p className="cv-contact">
+                        <a href={`mailto:${profile.email}`}>{profile.email}</a> · <a href={profile.linkedin.url}>{profile.linkedin.label}</a> · <a href={profile.github.url}>{profile.github.label}</a>
+                    </p>
+                    <p className="cv-contact">{profile.location} · {profile.availability}</p>
                 </header>
 
-                <div className="grid grid-cols-[1.1fr_2fr] gap-x-12">
-                    {/* Left Column */}
-                    <div className="space-y-8">
-                        {/* Education */}
-                        <section>
-                            <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-2 mb-4">Education</h2>
-                            <div>
-                                <h3 className="font-extrabold text-slate-800 text-[0.95rem]">Istanbul Technical University</h3>
-                                <p className="text-[0.85rem] font-bold text-blue-700 mt-1">B.Sc. Shipbuilding and Ocean Engineering</p>
-                                <p className="text-xs text-slate-600 mt-1 font-semibold">Sep 2021 - Aug 2026 · GPA: 3.25 / 4.0</p>
+                <Section title="Education">
+                    {education.map((e) => (
+                        <div key={e.degree} className="cv-entry">
+                            <div className="cv-row">
+                                <h3>{e.degree}<span>, {e.school}</span></h3>
+                                <span className="cv-date">{e.period}</span>
                             </div>
-                        </section>
+                            <p>{e.details.join(" · ")}</p>
+                        </div>
+                    ))}
+                </Section>
 
-                        {/* Memberships */}
-                        <section>
-                            <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-2 mb-4">Memberships</h2>
-                            <div>
-                                <h3 className="font-extrabold text-slate-800 text-[0.95rem]">SNAME</h3>
-                                <p className="text-[0.85rem] font-bold text-blue-700 mt-1">Student Member</p>
-                                <p className="text-xs text-slate-500 mt-1 font-medium leading-relaxed">The Society of Naval Architects &amp; Marine Engineers</p>
+                <Section title="Experience">
+                    {experience.map((x) => (
+                        <div key={x.role + x.org} className="cv-entry">
+                            <div className="cv-row">
+                                <h3>{x.role}<span>, {x.org}</span></h3>
+                                <span className="cv-date">{x.employment ? `${x.period} · ${x.employment}` : x.period}</span>
                             </div>
-                        </section>
+                            {x.cvNote && <p className="cv-note">{x.cvNote}</p>}
+                            <ul>{(x.cvBullets ?? x.bullets).map((b) => <li key={b}>{b}</li>)}</ul>
+                        </div>
+                    ))}
+                </Section>
 
-                        {/* Expertise */}
-                        <section>
-                            <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-2 mb-4">Expertise</h2>
-                            <ul className="text-[0.85rem] text-slate-800 space-y-4">
-                                <li className="font-bold">
-                                    Computational Fluid Dynamics (CFD)
-                                    <p className="text-xs text-slate-500 font-medium mt-1 leading-relaxed">OpenFOAM, STAR-CCM+, ANSYS Fluent, Maxsurf</p>
-                                </li>
-                                <li className="font-bold">
-                                    Ship Design & 3D Modeling
-                                    <p className="text-xs text-slate-500 font-medium mt-1 leading-relaxed">Rhinoceros 3D, SolidWorks, AutoCAD</p>
-                                </li>
-                                <li className="font-bold">
-                                    Software Dev & Automation
-                                    <p className="text-xs text-slate-500 font-medium mt-1 leading-relaxed">Python, AsyncIO, C/C++, MATLAB, Arduino</p>
-                                </li>
-                            </ul>
-                        </section>
+                <Section title="Selected projects">
+                    {cvProjects.map((p) => (
+                        <div key={p.id} className="cv-entry">
+                            <h3><Link href={`/work/${p.id}/`}>{p.cv.title}</Link></h3>
+                            <p>{p.cv.line}</p>
+                        </div>
+                    ))}
+                </Section>
 
-                        {/* Languages */}
-                        <section>
-                            <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-2 mb-4">Languages</h2>
-                            <ul className="text-[0.85rem] text-slate-800 space-y-2">
-                                <li><span className="font-bold text-slate-900">Turkish:</span> Native</li>
-                                <li><span className="font-bold text-slate-900">English:</span> Professional working proficiency</li>
-                                <li><span className="font-bold text-slate-900">German:</span> B1 (telc)</li>
-                            </ul>
-                        </section>
-                    </div>
-
-                    {/* Right Column */}
-                    <div className="space-y-8">
-                        {/* Experience */}
-                        <section>
-                            <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-2 mb-4">Experience</h2>
-                            <div className="space-y-6">
-                                <div>
-                                    <div className="flex justify-between items-baseline mb-1">
-                                        <h3 className="font-bold text-slate-900 text-[0.95rem]">CENTEC, Instituto Superior Técnico</h3>
-                                        <span className="text-xs font-bold text-slate-500 uppercase">Sep 2026 - Present</span>
-                                    </div>
-                                    <p className="text-[0.85rem] font-bold text-blue-700">Research Trainee (Erasmus+)</p>
-                                    <p className="text-xs text-slate-600 font-medium mt-1">CFD modelling of turbulent propeller-wake interaction.<br />Hydroacoustic characterization of a propeller operating in the wake of a submerged body.</p>
-                                </div>
-
-                                <div>
-                                    <div className="flex justify-between items-baseline mb-1">
-                                        <h3 className="font-bold text-slate-900 text-[0.95rem]">ITUKAT</h3>
-                                        <span className="text-xs font-bold text-slate-500 uppercase">Aug 2025 - Present</span>
-                                    </div>
-                                    <p className="text-[0.85rem] font-bold text-blue-700">Junior Researcher</p>
-                                    <p className="text-xs text-slate-600 font-medium mt-1">Force and moment measurement in CFD and comparison with EFD results.<br />Control and automation code development.</p>
-                                </div>
-
-                                <div>
-                                    <div className="flex justify-between items-baseline mb-1">
-                                        <h3 className="font-bold text-slate-900 text-[0.95rem]">ITU Ata Nutku Towing Tank</h3>
-                                        <span className="text-xs font-bold text-slate-500 uppercase">Sep 2024 - Jul 2026</span>
-                                    </div>
-                                    <p className="text-[0.85rem] font-bold text-blue-700">Student Observer</p>
-                                    <p className="text-xs text-slate-600 font-medium mt-1">Hands-on experience in resistance, propulsion, and seakeeping experiments.</p>
-                                </div>
-
-                                <div>
-                                    <div className="flex justify-between items-baseline mb-1">
-                                        <h3 className="font-bold text-slate-900 text-[0.95rem]">Besiktas Shipyard</h3>
-                                        <span className="text-xs font-bold text-slate-500 uppercase">Aug 2024 - Sep 2024 · Full-time Internship</span>
-                                    </div>
-                                    <p className="text-[0.85rem] font-bold text-blue-700">Production Engineering Intern</p>
-                                    <p className="text-xs text-slate-600 font-medium mt-1">Maintenance of engines, hydraulic systems, and marine pumps.</p>
-                                </div>
-
-                                <div>
-                                    <div className="flex justify-between items-baseline mb-1">
-                                        <h3 className="font-bold text-slate-900 text-[0.95rem]">Mensa Makina</h3>
-                                        <span className="text-xs font-bold text-slate-500 uppercase">Aug 2023 - Sep 2023 · Full-time Internship</span>
-                                    </div>
-                                    <p className="text-[0.85rem] font-bold text-blue-700">Mechanical Engineering Intern</p>
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* Projects */}
-                        <section>
-                            <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-2 mb-4">Featured Projects</h2>
-                            <div className="space-y-6 max-w-[95%]">
-                                <div>
-                                    <h3 className="font-bold text-slate-900 text-[0.95rem]">TCSG FISILTI - Hybrid Coast Guard Vessel</h3>
-                                    <p className="text-[0.85rem] text-slate-700 font-medium mt-1 leading-relaxed">Commanded preliminary design of a 69.5m hybrid propulsion vessel tailored for surveillance, special ops, and environmental response.</p>
-                                </div>
-                                <div>
-                                    <h3 className="font-bold text-slate-900 text-[0.95rem]">KCS Hull with Rudder</h3>
-                                    <p className="text-[0.85rem] text-slate-700 font-medium mt-1 leading-relaxed">Executed high-fidelity CFD simulation in STAR-CCM+. Achieved remarkable resistance prediction matching experimental data using Unsteady RANS with VOF.</p>
-                                </div>
-                                <div>
-                                    <h3 className="font-bold text-slate-900 text-[0.95rem]">Alicat Mass Flow Controller Interface</h3>
-                                    <p className="text-[0.85rem] text-slate-700 font-medium mt-1 leading-relaxed">Built a robust Windows desktop application in Python with AsyncIO to automate serial communication, providing real-time data logging and telemetry tracking.</p>
-                                </div>
-                                <div>
-                                    <h3 className="font-bold text-slate-900 text-[0.95rem]">DARPA SUBOFF Submarine</h3>
-                                    <p className="text-[0.85rem] text-slate-700 font-medium mt-1 leading-relaxed">Conducted appendage hydrodynamic resistance analyses per rigid ITTC guidelines with sub-1% discrepancy from validation data.</p>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-
-                <style dangerouslySetInnerHTML={{
-                    __html: `
-                    @page { size: A4; margin: 0; }
-                    @media print {
-                        body { 
-                            -webkit-print-color-adjust: exact !important; 
-                            print-color-adjust: exact !important; 
-                            background: white !important; 
-                        }
-                        div, section, p, h1, h2, h3, li, span {
-                            color: #000 !important;
-                        }
-                        /* Restore brand color for accents in print */
-                        .text-blue-700 { color: #1d4ed8 !important; }
-                        
-                        ::-webkit-scrollbar { display: none; }
-                    }
-                `}} />
-            </div>
-        </div>
+                <Section title="Skills, certifications and interests">
+                    {skills.map((g) => <p key={g.label}><strong>{g.label}:</strong> {g.items.join(", ")}</p>)}
+                    <p><strong>Languages:</strong> {languages.map((l) => `${l.name}: ${l.level}`).join("; ")}</p>
+                    <p><strong>Certifications:</strong> {certifications.map((c) => c.short).join("; ")}</p>
+                    <p><strong>Memberships and activities:</strong> {[...memberships.map((m) => `${m.name} (${m.role})`), ...activities].join("; ")}</p>
+                    <p><strong>Interests:</strong> {interests.join(", ")}</p>
+                </Section>
+            </article>
+        </main>
     );
 }

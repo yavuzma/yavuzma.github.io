@@ -1082,3 +1082,33 @@ ul {
   background-size: 200% 100%;
   animation: topBorderShimmer 6s linear infinite;
 }
+/* ===== CV PAGE (/cv) =====
+   A document, not part of the site theme: always dark text on white, sized like the PDF. */
+.cv-page { background: #eef1f4; color: #1f2937; min-height: 100vh; padding: 2rem 1rem 4rem; font-family: var(--font-inter), system-ui, sans-serif; }
+.cv-actions { max-width: 210mm; margin: 0 auto 1rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
+.cv-actions a { color: #0e5a7a; text-decoration: none; font-weight: 500; }
+.cv-actions .cv-download { background: #0e5a7a; color: #fff; padding: 0.55rem 1.1rem; border-radius: 6px; }
+.cv-sheet { max-width: 210mm; margin: 0 auto; background: #fff; padding: 14mm 15mm; box-shadow: 0 1px 3px rgba(0,0,0,0.08); font-size: 10pt; line-height: 1.45; }
+.cv-sheet h1 { font-size: 22pt; font-weight: 700; color: #111827; line-height: 1.1; }
+.cv-sheet .cv-title { font-size: 12pt; font-weight: 600; color: #0e5a7a; margin-top: 2pt; }
+.cv-sheet .cv-contact { color: #4b5563; font-size: 9.5pt; margin-top: 3pt; }
+.cv-sheet a { color: inherit; text-decoration: none; }
+.cv-sheet a:hover { color: #0e5a7a; text-decoration: underline; }
+.cv-section { margin-top: 12pt; }
+.cv-section h2 { font-size: 9.8pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0e5a7a; border-bottom: 1px solid #d1d5db; padding-bottom: 2pt; margin-bottom: 6pt; }
+.cv-section p { margin-bottom: 2pt; }
+.cv-section strong { color: #111827; font-weight: 600; }
+.cv-entry { margin-bottom: 6pt; }
+.cv-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.cv-entry h3 { font-size: 10.3pt; font-weight: 600; color: #111827; }
+.cv-entry h3 span { font-weight: 400; color: #1f2937; }
+.cv-date { color: #4b5563; font-size: 9.5pt; white-space: nowrap; }
+.cv-note { color: #4b5563; font-style: italic; font-size: 9.5pt; }
+.cv-entry ul { list-style: none; padding: 0; }
+.cv-entry li { padding-left: 0.9em; text-indent: -0.9em; }
+.cv-entry li::before { content: "- "; color: #4b5563; }
+@media print {
+  .cv-page { background: #fff; padding: 0; }
+  .cv-actions { display: none; }
+  .cv-sheet { box-shadow: none; padding: 0; }
+}
