@@ -224,6 +224,6 @@ export const certifications: Certification[] = [
 
 export const memberships = [{ name: "SNAME", role: "Student Member", full: "Society of Naval Architects & Marine Engineers", url: "https://www.sname.org" }];
 
-export const activities = ["ITU Shipbuilding Engineering Club", "ITU SAVTEK Defense Technologies Club"];
+export const activities = ["ITU Shipbuilding Engineering Club"];
 
 export const interests = ["Hydrodynamics", "Hydroacoustics", "Propeller and ship design", "Marine and autonomous systems", "Defense technology", "AI"];
