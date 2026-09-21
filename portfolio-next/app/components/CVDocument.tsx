@@ -70,7 +70,7 @@ export default function CVDocument() {
                     {"  ·  "}
                     <Link src={profile.website.url} style={s.link}>{profile.website.label}</Link>
                 </Text>
-                <Text style={[s.contact, { marginTop: 1 }]}>{profile.location}  ·  {profile.availability}</Text>
+                <Text style={[s.contact, { marginTop: 1 }]}>{profile.location}</Text>
 
                 <Section title="Education">
                     {education.map((e) => (

@@ -11,7 +11,7 @@ export default function ContactSection() {
                         <h2 id="contact-title" className="section__title">Get in touch</h2>
                     </div>
                     <p className="contact__lead">
-                        Open to research and engineering roles in marine hydrodynamics, CFD and hydroacoustics. {profile.availability}.
+                        Open to research and engineering opportunities.
                     </p>
                 </div>
 

@@ -39,7 +39,7 @@ export default function CVPage() {
                     <p className="cv-contact">
                         <a href={`mailto:${profile.email}`}>{profile.email}</a> · <a href={profile.linkedin.url}>{profile.linkedin.label}</a> · <a href={profile.github.url}>{profile.github.label}</a>
                     </p>
-                    <p className="cv-contact">{profile.location} · {profile.availability}</p>
+                    <p className="cv-contact">{profile.location}</p>
                 </header>
 
                 <Section title="Education">

@@ -16,7 +16,6 @@ export default function Hero() {
                     <ul className="hero__status">
                         <li>Research trainee at CENTEC, Instituto Superior Técnico</li>
                         <li>{profile.location}</li>
-                        <li>{profile.availability}</li>
                     </ul>
                     <div className="hero__actions">
                         <a className="btn btn--primary" href="#work">Projects</a>

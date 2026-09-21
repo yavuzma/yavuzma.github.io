@@ -10,7 +10,6 @@ export const profile = {
     title: "Naval Architect and Ocean Engineer",
     born: "August 2003",
     location: "Lisbon, Portugal",
-    availability: "Available from August 2027",
     email: "yavuzmu21@itu.edu.tr",
     website: { label: "yavuzma.github.io", url: "https://yavuzma.github.io" },
     linkedin: { label: "linkedin.com/in/yavuzitu", url: "https://www.linkedin.com/in/yavuzitu" },
