@@ -1,1 +1,4 @@
 .claude/
+
+# Local scratch output (audits, PDF inspection tools)
+tmp/
