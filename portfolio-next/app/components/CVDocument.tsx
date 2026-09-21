@@ -250,7 +250,7 @@ export default function CVDocument() {
                     <View style={s.headerLeft}>
                         <Text style={s.name}>Muhammet Ali Yavuz</Text>
                         <Text style={s.subtitle}>
-                            Naval Architect · CFD Engineer · Software Architect
+                            Naval Architect and Ocean Engineer
                         </Text>
                         <Link src="https://yavuzma.github.io" style={s.portfolioBadge}>
                             Portfolio: yavuzma.github.io
@@ -286,7 +286,7 @@ export default function CVDocument() {
                         </View>
 
                         <View style={s.contactRow}>
-                            <Text style={s.contactText}>Lisbon, Portugal</Text>
+                            <Text style={s.contactText}>Lisbon, Portugal · Available from Aug 2027</Text>
                             <View style={s.iconBox}>
                                 <PinIcon />
                             </View>
@@ -303,8 +303,8 @@ export default function CVDocument() {
                             <Text style={s.sectionTitle}>Education</Text>
 
                             <View style={s.entryHeader}>
-                                <Text style={s.entryRole}>BSc Shipbuilding &amp; Ocean Engineering</Text>
-                                <Text style={s.entryDate}>Sep 2021 - Present</Text>
+                                <Text style={s.entryRole}>B.Sc. Shipbuilding and Ocean Engineering</Text>
+                                <Text style={s.entryDate}>Sep 2021 - Aug 2026</Text>
                             </View>
                             <Text style={s.entrySubtitle}>Istanbul Technical University</Text>
                             <Text style={s.eduDetails}>
@@ -329,17 +329,17 @@ export default function CVDocument() {
 
                             <View style={s.expItem}>
                                 <View style={s.entryHeader}>
-                                    <Text style={s.entryRole}>Researcher</Text>
-                                    <Text style={s.entryDate}>Sep 2026 - Present · Full-time Internship</Text>
+                                    <Text style={s.entryRole}>Research Trainee (Erasmus+)</Text>
+                                    <Text style={s.entryDate}>Sep 2026 - Present · Full-time</Text>
                                 </View>
                                 <Text style={s.entrySubtitle}>CENTEC, Instituto Superior Técnico, University of Lisbon</Text>
-                                <Bullet>Turbulence modelling.</Bullet>
-                                <Bullet>Hydroacoustic characterization of a propeller operating in a wake.</Bullet>
+                                <Bullet>CFD modelling of turbulent propeller-wake interaction.</Bullet>
+                                <Bullet>Hydroacoustic characterization of a propeller operating in the wake of a submerged body.</Bullet>
                             </View>
 
                             <View style={s.expItem}>
                                 <View style={s.entryHeader}>
-                                    <Text style={s.entryRole}>Undergraduate Researcher</Text>
+                                    <Text style={s.entryRole}>Junior Researcher</Text>
                                     <Text style={s.entryDate}>Aug 2025 - Present</Text>
                                 </View>
                                 <Text style={s.entrySubtitle}>ITUKAT</Text>
@@ -352,8 +352,8 @@ export default function CVDocument() {
 
                             <View style={s.expItem}>
                                 <View style={s.entryHeader}>
-                                    <Text style={s.entryRole}>Curious Student</Text>
-                                    <Text style={s.entryDate}>Sep 2024 - Aug 2026</Text>
+                                    <Text style={s.entryRole}>Student Observer</Text>
+                                    <Text style={s.entryDate}>Sep 2024 - Jul 2026</Text>
                                 </View>
                                 <Text style={s.entrySubtitle}>ITU Ata Nutku Towing Tank</Text>
                                 <Bullet>Resistance, propulsion, and seakeeping experiments; towing-tank testing procedures.</Bullet>
@@ -361,8 +361,8 @@ export default function CVDocument() {
 
                             <View style={s.expItem}>
                                 <View style={s.entryHeader}>
-                                    <Text style={s.entryRole}>Production Engineer</Text>
-                                    <Text style={s.entryDate}>Jun 2026 · Full-time Internship</Text>
+                                    <Text style={s.entryRole}>Production Engineering Intern</Text>
+                                    <Text style={s.entryDate}>Jun 2026 · Full-time</Text>
                                 </View>
                                 <Text style={s.entrySubtitle}>Anadolu Shipyard</Text>
                                 <Text style={s.expConfidential}>
@@ -374,8 +374,8 @@ export default function CVDocument() {
 
                             <View style={s.expItem}>
                                 <View style={s.entryHeader}>
-                                    <Text style={s.entryRole}>Production Engineer</Text>
-                                    <Text style={s.entryDate}>Aug - Sep 2024 · Full-time Internship</Text>
+                                    <Text style={s.entryRole}>Production Engineering Intern</Text>
+                                    <Text style={s.entryDate}>Aug - Sep 2024 · Full-time</Text>
                                 </View>
                                 <Text style={s.entrySubtitle}>Besiktas Shipyard</Text>
                                 <Bullet>Main engine, hydraulic and generator maintenance; compressor &amp; ballast pump overhaul.</Bullet>
@@ -384,8 +384,8 @@ export default function CVDocument() {
 
                             <View style={s.expItem}>
                                 <View style={s.entryHeader}>
-                                    <Text style={s.entryRole}>Mechanical Engineer</Text>
-                                    <Text style={s.entryDate}>Aug - Sep 2023 · Full-time Internship</Text>
+                                    <Text style={s.entryRole}>Mechanical Engineering Intern</Text>
+                                    <Text style={s.entryDate}>Aug - Sep 2023 · Full-time</Text>
                                 </View>
                                 <Text style={s.entrySubtitle}>MENSA MAKINA</Text>
                                 <Bullet>Designed and installed a complete ventilation system for a sheet-metal processing line.</Bullet>
@@ -406,7 +406,7 @@ export default function CVDocument() {
                             <View style={s.projItem}>
                                 <Text style={s.projName}>KCS Hull with Rudder - CFD Resistance</Text>
                                 <Text style={s.projDesc}>
-                                    Unsteady RANS + VOF in STAR-CCM+; 5 cases × 3 mesh levels; 0.22% deviation from EFD.
+                                    Unsteady RANS + VOF in STAR-CCM+; 5-run sensitivity study; -2.7% to +0.8% vs EFD.
                                 </Text>
                             </View>
                             <View style={s.projItem}>
@@ -450,8 +450,8 @@ export default function CVDocument() {
 
                         <View style={s.section}>
                             <Text style={s.sectionTitle}>Languages</Text>
-                            <Text style={s.langItem}>English - Advanced</Text>
-                            <Text style={s.langItem}>German - Intermediate</Text>
+                            <Text style={s.langItem}>English - Professional working proficiency</Text>
+                            <Text style={s.langItem}>German - B1 (telc)</Text>
                             <Text style={s.langItem}>Turkish - Native</Text>
                         </View>
 
@@ -502,7 +502,6 @@ export default function CVDocument() {
                         <Text>   ·   </Text>
                         <Link src="https://linkedin.com/in/yavuzitu" style={s.link}>linkedin.com/in/yavuzitu</Link>
                     </Text>
-                    <Text style={s.footerNote}>References available upon request</Text>
                 </View>
             </Page>
         </Document>

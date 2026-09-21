@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef, useState, useEffect, useCallback } from "react"; // useState/useEffect used by AnimatedNumber; useRef/useCallback by TiltCard
+import { useRef, useCallback } from "react";
 
 function TiltCard({ children }: { children: React.ReactNode }) {
     const ref = useRef<HTMLDivElement>(null);
@@ -23,32 +23,6 @@ function TiltCard({ children }: { children: React.ReactNode }) {
     );
 }
 
-function AnimatedNumber({ target, suffix = "", decimals = 0 }: { target: number; suffix?: string; decimals?: number }) {
-    const [value, setValue] = useState(target);
-    const ref = useRef<HTMLSpanElement>(null);
-    const hasAnimated = useRef(false);
-    useEffect(() => {
-        const el = ref.current;
-        if (!el) return;
-        const obs = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting && !hasAnimated.current) {
-                hasAnimated.current = true;
-                const s = performance.now();
-                const step = (now: number) => {
-                    const p = Math.min((now - s) / 2000, 1);
-                    const eased = 1 - Math.pow(1 - p, 3);
-                    setValue(eased * target);
-                    if (p < 1) requestAnimationFrame(step);
-                };
-                requestAnimationFrame(step);
-            }
-        }, { threshold: 0.5 });
-        obs.observe(el);
-        return () => obs.disconnect();
-    }, [target]);
-    return <span ref={ref}>{value.toFixed(decimals)}{suffix}</span>;
-}
-
 const skills = [
     {
         title: "Analysis",
@@ -67,20 +41,9 @@ const skills = [
     },
     {
         title: "Languages",
-        tags: ["Turkish - Native", "English - Advanced", "German - Intermediate"],
+        tags: ["Turkish - Native", "English - Professional working proficiency", "German - B1 (telc)"],
         color: "var(--cy)",
     },
-    {
-        title: "AI Assistants",
-        tags: ["ChatGPT+", "Claude", "Gemini Pro"],
-        color: "var(--bl)",
-    },
-];
-
-const stats = [
-    { value: 3.25, label: "CGPA", decimals: 2 },
-    { value: 6, label: "CFD Projects", decimals: 0 },
-    { value: 3, label: "Internships", decimals: 0 },
 ];
 
 const fadeInUp = {
@@ -108,18 +71,6 @@ export default function About() {
                             An innovation-driven young engineer who blends hands-on field experience with <span className="accent-cy">Computational Fluid Dynamics (CFD)</span>, <span className="accent-bl">Experimental Fluid Dynamics (EFD)</span>, and <span className="accent-or">software development</span>. I don't just analyze hydrodynamics and fluid mechanics problems on a screen; I validate them through active field tests and offer creative solutions by automating processes with my coding skills. Based on analytical thinking and rational data, I am an energetic team player who thinks outside the box and is eager to continuously learn. My goal is to create globally valuable engineering projects guided by science and data.
                         </p>
                     </div>
-                </motion.div>
-
-                {/* Stats grid */}
-                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={{ hidden: { opacity: 0, y: 25 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 } } }} className="grid grid-cols-3 gap-4 mb-16 max-w-lg w-full">
-                    {stats.map((s, i) => (
-                        <div key={s.label} className="glass-card shine-sweep text-center" style={{ padding: "1.2rem 0.8rem", borderRadius: "var(--r)" }}>
-                            <div style={{ fontFamily: "var(--fh)", fontSize: "1.8rem", fontWeight: 700, color: i === 0 ? "var(--cy)" : i === 1 ? "var(--bl)" : "var(--or)", lineHeight: 1, marginBottom: "0.3rem" }}>
-                                <AnimatedNumber target={s.value} suffix={i === 0 ? "" : "+"} decimals={s.decimals} />
-                            </div>
-                            <span style={{ fontFamily: "var(--fb)", fontSize: "0.72rem", color: "var(--t3)", textTransform: "uppercase", letterSpacing: "1px", fontWeight: 500 }}>{s.label}</span>
-                        </div>
-                    ))}
                 </motion.div>
 
                 {/* Skills grid */}

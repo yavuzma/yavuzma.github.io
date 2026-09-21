@@ -37,10 +37,11 @@ export default function CVPage() {
                         Muhammet Ali Yavuz
                     </h1>
                     <div className="flex flex-wrap justify-between items-end mt-3">
-                        <p className="text-xl font-bold text-slate-700">Naval Architect & CFD Engineer</p>
+                        <p className="text-xl font-bold text-slate-700">Naval Architect and Ocean Engineer</p>
                         <div className="text-xs font-semibold text-slate-500 text-right uppercase tracking-widest leading-relaxed">
                             <p>Born: August 2003</p>
                             <p>Lisbon, Portugal</p>
+                            <p>Available from August 2027</p>
                             <p className="text-black">yavuzma.github.io</p>
                         </div>
                     </div>
@@ -54,8 +55,8 @@ export default function CVPage() {
                             <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-2 mb-4">Education</h2>
                             <div>
                                 <h3 className="font-extrabold text-slate-800 text-[0.95rem]">Istanbul Technical University</h3>
-                                <p className="text-[0.85rem] font-bold text-blue-700 mt-1">Naval Architecture & Ocean Engineering</p>
-                                <p className="text-xs text-slate-600 mt-1 font-semibold">GPA: 3.25 / 4.0</p>
+                                <p className="text-[0.85rem] font-bold text-blue-700 mt-1">B.Sc. Shipbuilding and Ocean Engineering</p>
+                                <p className="text-xs text-slate-600 mt-1 font-semibold">Sep 2021 - Aug 2026 · GPA: 3.25 / 4.0</p>
                             </div>
                         </section>
 
@@ -93,8 +94,8 @@ export default function CVPage() {
                             <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-2 mb-4">Languages</h2>
                             <ul className="text-[0.85rem] text-slate-800 space-y-2">
                                 <li><span className="font-bold text-slate-900">Turkish:</span> Native</li>
-                                <li><span className="font-bold text-slate-900">English:</span> Advanced</li>
-                                <li><span className="font-bold text-slate-900">German:</span> Intermediate</li>
+                                <li><span className="font-bold text-slate-900">English:</span> Professional working proficiency</li>
+                                <li><span className="font-bold text-slate-900">German:</span> B1 (telc)</li>
                             </ul>
                         </section>
                     </div>
@@ -110,8 +111,8 @@ export default function CVPage() {
                                         <h3 className="font-bold text-slate-900 text-[0.95rem]">CENTEC, Instituto Superior Técnico</h3>
                                         <span className="text-xs font-bold text-slate-500 uppercase">Sep 2026 - Present</span>
                                     </div>
-                                    <p className="text-[0.85rem] font-bold text-blue-700">Researcher</p>
-                                    <p className="text-xs text-slate-600 font-medium mt-1">Turbulence modelling.<br />Hydroacoustic characterization of a propeller operating in a wake.</p>
+                                    <p className="text-[0.85rem] font-bold text-blue-700">Research Trainee (Erasmus+)</p>
+                                    <p className="text-xs text-slate-600 font-medium mt-1">CFD modelling of turbulent propeller-wake interaction.<br />Hydroacoustic characterization of a propeller operating in the wake of a submerged body.</p>
                                 </div>
 
                                 <div>
@@ -119,16 +120,16 @@ export default function CVPage() {
                                         <h3 className="font-bold text-slate-900 text-[0.95rem]">ITUKAT</h3>
                                         <span className="text-xs font-bold text-slate-500 uppercase">Aug 2025 - Present</span>
                                     </div>
-                                    <p className="text-[0.85rem] font-bold text-blue-700">Undergraduate Researcher</p>
+                                    <p className="text-[0.85rem] font-bold text-blue-700">Junior Researcher</p>
                                     <p className="text-xs text-slate-600 font-medium mt-1">Force and moment measurement in CFD and comparison with EFD results.<br />Control and automation code development.</p>
                                 </div>
 
                                 <div>
                                     <div className="flex justify-between items-baseline mb-1">
                                         <h3 className="font-bold text-slate-900 text-[0.95rem]">ITU Ata Nutku Towing Tank</h3>
-                                        <span className="text-xs font-bold text-slate-500 uppercase">Sep 2024 - Aug 2026</span>
+                                        <span className="text-xs font-bold text-slate-500 uppercase">Sep 2024 - Jul 2026</span>
                                     </div>
-                                    <p className="text-[0.85rem] font-bold text-blue-700">Curious Student</p>
+                                    <p className="text-[0.85rem] font-bold text-blue-700">Student Observer</p>
                                     <p className="text-xs text-slate-600 font-medium mt-1">Hands-on experience in resistance, propulsion, and seakeeping experiments.</p>
                                 </div>
 
@@ -137,7 +138,7 @@ export default function CVPage() {
                                         <h3 className="font-bold text-slate-900 text-[0.95rem]">Besiktas Shipyard</h3>
                                         <span className="text-xs font-bold text-slate-500 uppercase">Aug 2024 - Sep 2024 · Full-time Internship</span>
                                     </div>
-                                    <p className="text-[0.85rem] font-bold text-blue-700">Production Engineer</p>
+                                    <p className="text-[0.85rem] font-bold text-blue-700">Production Engineering Intern</p>
                                     <p className="text-xs text-slate-600 font-medium mt-1">Maintenance of engines, hydraulic systems, and marine pumps.</p>
                                 </div>
 
@@ -146,7 +147,7 @@ export default function CVPage() {
                                         <h3 className="font-bold text-slate-900 text-[0.95rem]">Mensa Makina</h3>
                                         <span className="text-xs font-bold text-slate-500 uppercase">Aug 2023 - Sep 2023 · Full-time Internship</span>
                                     </div>
-                                    <p className="text-[0.85rem] font-bold text-blue-700">Mechanical Engineer</p>
+                                    <p className="text-[0.85rem] font-bold text-blue-700">Mechanical Engineering Intern</p>
                                 </div>
                             </div>
                         </section>

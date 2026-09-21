@@ -22,7 +22,7 @@ export default function Footer() {
                 {/* Copyright - true center at 50% */}
                 <div className="hidden sm:block absolute left-1/2 -translate-x-1/2 z-10 pointer-events-none">
                     <p style={{ fontFamily: "var(--fb)", fontSize: "0.85rem", color: "var(--t3)", letterSpacing: "0.3px", whiteSpace: "nowrap" }} className="pointer-events-auto">
-                        © {year} Muhammet Ali Yavuz - Naval Architecture
+                        © {year} Muhammet Ali Yavuz - Naval Architect and Ocean Engineer
                     </p>
                 </div>
 

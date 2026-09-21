@@ -1,101 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import DownloadCVButton from "./DownloadCVButton";
 import { smoothScrollTo } from "../lib/lenis";
 import Spotlight from "./Spotlight";
-
-const ROLES = [
-    "Naval Architect",
-    "CFD Engineer",
-    "Software Architect",
-];
-
-function TypewriterRole({ words, speed = 80, pause = 2200 }: { words: string[], speed?: number, pause?: number }) {
-    const [text, setText] = useState("");
-    const [wordIndex, setWordIndex] = useState(0);
-    const [charIndex, setCharIndex] = useState(0);
-    const [deleting, setDeleting] = useState(false);
-
-    useEffect(() => {
-        const current = words[wordIndex];
-        let timeout: ReturnType<typeof setTimeout>;
-
-        if (!deleting && charIndex < current.length) {
-            timeout = setTimeout(() => setCharIndex((c) => c + 1), speed);
-        } else if (!deleting && charIndex === current.length) {
-            timeout = setTimeout(() => setDeleting(true), pause);
-        } else if (deleting && charIndex > 0) {
-            timeout = setTimeout(() => setCharIndex((c) => c - 1), speed / 2);
-        } else if (deleting && charIndex === 0) {
-            setDeleting(false);
-            setWordIndex((w) => (w + 1) % words.length);
-        }
-
-        return () => clearTimeout(timeout);
-    }, [charIndex, deleting, wordIndex, words, speed, pause]);
-
-    useEffect(() => {
-        setText(words[wordIndex].slice(0, charIndex));
-    }, [charIndex, wordIndex, words]);
-
-    return (
-        <span style={{ fontFamily: "var(--fb)", fontSize: "1.05rem", fontWeight: 500, color: "var(--cy)", letterSpacing: "0.3px" }}>
-            {text}
-            <span style={{ display: "inline-block", width: "2px", height: "1em", background: "var(--cy)", marginLeft: "2px", verticalAlign: "middle", animation: "blink 0.9s step-end infinite" }} />
-        </span>
-    );
-}
-
-function AnimatedCounterStat({ target, decimals = 0, duration = 2000, label, unit, color }: { target: number, decimals?: number, duration?: number, label: string, unit: string, color: string }) {
-    const [value, setValue] = useState(target);
-    const [started, setStarted] = useState(false);
-    const ref = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const el = ref.current;
-        if (!el) return;
-        const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting && !started) {
-                setStarted(true);
-            }
-        }, { threshold: 0.5 });
-        observer.observe(el);
-        return () => observer.disconnect();
-    }, [started]);
-
-    useEffect(() => {
-        if (!started) return;
-        const startTime = performance.now();
-        const step = (now: number) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setValue(eased * target);
-            if (progress < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-    }, [started, target, duration]);
-
-    return (
-        <div ref={ref} className="flex flex-col items-center gap-1">
-            <span style={{ fontFamily: "var(--fh)", fontSize: "2.2rem", fontWeight: 700, color: color, letterSpacing: "-1px", lineHeight: 1 }}>
-                {value.toFixed(decimals)}
-                <span style={{ fontSize: "0.95rem", opacity: 0.6 }}>{unit === "/ 4.0" ? " / 4.0" : unit}</span>
-            </span>
-            <span style={{ fontSize: "0.75rem", color: "var(--t3)", textTransform: "uppercase", letterSpacing: "1px", fontFamily: "var(--fb)", fontWeight: 500, marginTop: "0.6rem" }}>
-                {label}
-            </span>
-        </div>
-    );
-}
 
 function InfoBadge() {
     return (
         <div className="flex justify-center mb-6" style={{ animation: "fadeUp 0.6s ease 0.1s both" }}>
             <span className="hero-depth-badge" style={{ fontFamily: "var(--fm)", fontSize: "0.72rem" }}>
                 <span className="dot" />
-                Naval Architecture &amp; Ocean Engineering · ITU · b. August 2003
+                Shipbuilding and Ocean Engineering, ITU · b. August 2003
             </span>
         </div>
     );
@@ -247,15 +162,13 @@ export default function Hero() {
 
                 {/* Role - readable font */}
                 <div style={{ height: "2rem", marginBottom: "3rem", animation: "fadeUp 0.7s ease 0.35s both" }}>
-                    <TypewriterRole words={ROLES} />
+                    <span style={{ fontFamily: "var(--fb)", fontSize: "1.05rem", fontWeight: 500, color: "var(--cy)", letterSpacing: "0.3px" }}>Naval Architect and Ocean Engineer</span>
                 </div>
 
-                {/* Stats */}
-                <div className="flex justify-center gap-10 mb-20 flex-wrap" style={{ animation: "fadeUp 0.7s ease 0.45s both" }}>
-                    <AnimatedCounterStat target={3.25} decimals={2} duration={2500} label="GPA" unit="/ 4.0" color="var(--cy)" />
-                    <AnimatedCounterStat target={6} decimals={0} duration={2000} label="CFD Projects" unit="+" color="var(--bl)" />
-                    <AnimatedCounterStat target={3} decimals={0} duration={1800} label="Internships" unit="+" color="var(--or)" />
-                </div>
+                {/* Status */}
+                <p className="mb-20" style={{ fontFamily: "var(--fb)", fontSize: "0.9rem", color: "var(--t2)", animation: "fadeUp 0.7s ease 0.45s both" }}>
+                    Based in Lisbon, Portugal · Available from August 2027
+                </p>
 
                 {/* CTA Buttons - expanded gap and enhanced glow */}
                 <div className="flex justify-center gap-6 flex-wrap mt-8" style={{ animation: "fadeUp 0.7s ease 0.55s both" }}>

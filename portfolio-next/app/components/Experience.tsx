@@ -6,21 +6,21 @@ import { useRef, useState, useEffect } from "react";
 const experiences = [
     {
         period: "Sep 2026 - Present",
-        title: "Researcher",
+        title: "Research Trainee",
         company: "CENTEC, Instituto Superior Técnico",
         companyUrl: "http://www.centec.tecnico.ulisboa.pt/centec/index.aspx",
         current: true,
         fullTime: true,
         internship: true,
-        description: "Centre for Marine Technology and Ocean Engineering, University of Lisbon.",
+        description: "Erasmus+ traineeship at the Centre for Marine Technology and Ocean Engineering, University of Lisbon.",
         bullets: [
-            "Turbulence modelling.",
-            "Hydroacoustic characterization of a propeller operating in a wake.",
+            "CFD modelling of turbulent propeller-wake interaction.",
+            "Hydroacoustic characterization of a propeller operating in the wake of a submerged body.",
         ],
     },
     {
         period: "Aug 2025 - Present",
-        title: "Undergraduate Researcher",
+        title: "Junior Researcher",
         company: "ITUKAT",
         companyUrl: "https://itukat.itu.edu.tr/en/home/",
         current: true,
@@ -31,8 +31,8 @@ const experiences = [
         ],
     },
     {
-        period: "Sep 2024 - Aug 2026",
-        title: "Curious Student",
+        period: "Sep 2024 - Jul 2026",
+        title: "Student Observer",
         company: "ITU Ata Nutku Towing Tank",
         current: false,
         bullets: [
@@ -42,7 +42,7 @@ const experiences = [
     },
     {
         period: "Jun 2026",
-        title: "Production Engineer",
+        title: "Production Engineering Intern",
         company: "Anadolu Shipyard",
         companyUrl: "https://www.anadolushipyard.com/",
         current: false,
@@ -67,7 +67,7 @@ const experiences = [
     },
     {
         period: "Aug 2024 - Sep 2024",
-        title: "Production Engineer",
+        title: "Production Engineering Intern",
         company: "Besiktas Shipyard",
         companyUrl: "https://www.besiktasshipyard.com/",
         current: false,
@@ -92,7 +92,7 @@ const experiences = [
     },
     {
         period: "Aug 2023 - Sep 2023",
-        title: "Mechanical Engineer",
+        title: "Mechanical Engineering Intern",
         company: "MENSA MAKİNA",
         current: false,
         fullTime: true,

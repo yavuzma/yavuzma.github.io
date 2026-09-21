@@ -58,7 +58,7 @@ export interface Project {
 export const projects: Project[] = [
     {
         id: "tcsg",
-        title: "Undergraduation Project - TCSG FISILTI (WHISPER)",
+        title: "Capstone Design Project - TCSG FISILTI (WHISPER)",
         shortDesc:
             "Designed for surveillance, environmental response, and special ops, this 69.5m hybrid vessel features Azipod propulsion and extensive mission equipment.",
         badge: "Ship Design · Preliminary",
@@ -101,7 +101,6 @@ export const projects: Project[] = [
                             { th: "Total Brake Power", td: "8,562 kW" },
                             { th: "Bow Thruster", td: "250 kW (40 kN thrust)" },
                             { th: "Gensets", td: "4 × MAN 20V175D-MEM (3072 kWe each)" },
-                            { th: "Total Electrical Output", td: "12,451 kWe" },
                         ],
                     },
                 },
@@ -161,7 +160,7 @@ export const projects: Project[] = [
         id: "alicat",
         title: "Alicat Mass Flow Controller - Control Interface",
         shortDesc:
-            "Production-grade desktop app for real-time control, monitoring, and automated data logging.",
+            "Desktop app for real-time control, monitoring, and automated data logging.",
         badge: "Python · GUI · Automation",
         image: "/images/projects/alicat_flowmeter/gui.png",
         gradient: "from-slate-950 to-slate-700",
@@ -173,13 +172,13 @@ export const projects: Project[] = [
         modal: {
             badge: "Python Desktop App · Control Systems",
             subtitle:
-                "Production-style Windows desktop application for real-time monitoring and automation",
+                "Windows desktop application for real-time monitoring and automation",
             mainSections: [
                 {
                     title: "Project Overview",
                     type: "text",
                     content: [
-                        "I built a production-style Windows desktop application to control an Alicat Mass Flow Controller via serial communication. The tool provides real-time monitoring, manual setpoint control, automated test sequences from Excel matrices, and clean Excel export for experiments and reporting.",
+                        "I built a Windows desktop application to control an Alicat Mass Flow Controller via serial communication. The tool provides real-time monitoring, manual setpoint control, automated test sequences from Excel matrices, and clean Excel export for experiments and reporting.",
                         "This application bridges the gap between hardware control and data analysis, providing a robust interface for experimental setups.",
                     ],
                 },
@@ -233,21 +232,21 @@ export const projects: Project[] = [
         image: "/images/projects/kcs_hull_with_rudder/3_free_surface.png",
         gradient: "from-sky-950 to-sky-600",
         metrics: [
-            { value: "0.22%", label: "best deviation" },
-            { value: "5", label: "cases" },
+            { value: "-2.7 / +0.8%", label: "range vs EFD" },
+            { value: "5", label: "runs" },
             { value: "Unsteady RANS", label: "Method" },
         ],
         modal: {
             badge: "CFD Analysis · STAR-CCM+",
             subtitle:
-                "High-fidelity CFD simulation of KRISO Container Ship with rudder and free surface modeling",
+                "CFD simulation of the KRISO Container Ship with rudder and free surface modeling",
             mainSections: [
                 {
                     title: "Project Overview",
                     type: "text",
                     content: [
                         "This project involves comprehensive computational fluid dynamics (CFD) analysis of the KRISO Container Ship (KCS) hull form with rudder. The study focuses on resistance prediction using unsteady Reynolds-Averaged Navier-Stokes (RANS) equations with Volume of Fluid (VOF) method.",
-                        "The simulation was conducted using STAR-CCM+ with three different mesh refinements and time step variations to ensure grid independence.",
+                        "The simulation was run in STAR-CCM+ as a five-run sensitivity study, varying mesh density, time step and turbulence model, and compared with experimental resistance data.",
                     ],
                 },
                 {
@@ -295,10 +294,10 @@ export const projects: Project[] = [
                     items: [
                         "Method: Unsteady RANS with Volume of Fluid (VOF)",
                         "Software: STAR-CCM+",
-                        "Mesh Strategy: 3 refinement levels (1.05M - 2.03M cells)",
+                        "Mesh: 1.05M - 2.03M cells across runs",
                         "Time Steps: Sensitivity analysis (0.016s vs 0.04s)",
-                        "Goal: Validation against experimental data",
-                        "Outcome: Grid independence verification",
+                        "Goal: Comparison with experimental data",
+                        "Outcome: -2.7% to +0.8% deviation from EFD across five runs",
                     ],
                 },
             ],
@@ -359,7 +358,6 @@ export const projects: Project[] = [
                         "Turbulence Model: k-ε",
                         "Configurations: AFF1, AFF3, AFF8",
                         "Reynolds Number: 1.2 × 10⁷",
-                        "Mesh Cells: 4.2M - 6.8M",
                         "Deviation: 0.5% from EFD",
                     ],
                 },
@@ -389,14 +387,14 @@ export const projects: Project[] = [
         ],
         modal: {
             badge: "Design · CFD · Stability Analysis",
-            subtitle: "Comprehensive offshore platform design from concept to CFD validation",
+            subtitle: "Offshore platform concept design: 3D modeling, stability and CFD",
             mainSections: [
                 {
                     title: "Project Overview",
                     type: "text",
                     content: [
-                        "This multidisciplinary project encompasses the complete design cycle of a semi-submersible offshore drilling platform. The work integrates 3D modeling, hydrostatic stability analysis, and computational fluid dynamics to create a validated platform design suitable for deep-water operations.",
-                        "The platform features a 70×40m deck area with a 25m derrick tower, designed to operate in harsh offshore environments with adequate stability margins and structural integrity.",
+                        "This multidisciplinary project encompasses the complete design cycle of a semi-submersible offshore drilling platform. The work integrates 3D modeling, hydrostatic stability analysis, and computational fluid dynamics in a conceptual platform design.",
+                        "The platform features a 70×40m deck area with a 25m derrick tower, with hydrostatic stability assessed in Maxsurf Stability.",
                     ],
                 },
                 {
@@ -430,7 +428,6 @@ export const projects: Project[] = [
                         "3D Modeling: Detailed geometry creation in Rhinoceros 3D including hull, pontoons, and deck structures",
                         "Stability Analysis: Hydrostatic calculations and stability assessment using Maxsurf Stability",
                         "CFD Analysis: Wave interaction and hydrodynamic loading simulation in ANSYS Fluent",
-                        "Structural Verification: Load distribution and stress analysis for critical components",
                     ],
                 },
                 {
@@ -440,7 +437,6 @@ export const projects: Project[] = [
                         "Optimized pontoon design for reduced wave-induced motions",
                         "Integrated ballast system for draft control and stability management",
                         "Modular deck design accommodating drilling equipment and crew quarters",
-                        "CFD-validated hydrodynamic performance in operational sea states",
                     ],
                 },
             ],

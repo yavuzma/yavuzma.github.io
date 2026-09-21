@@ -22,9 +22,9 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Muhammet Ali Yavuz - Naval Architecture",
+  title: "Muhammet Ali Yavuz - Naval Architect and Ocean Engineer",
   description:
-    "Naval Architecture & Ocean Engineering portfolio. CFD Engineer, Software Architect, and Naval Architect at Istanbul Technical University.",
+    "Portfolio of Muhammet Ali Yavuz, Naval Architect and Ocean Engineer (B.Sc. Shipbuilding and Ocean Engineering, ITU): CFD, experimental hydrodynamics and engineering automation.",
   keywords: [
     "Naval Architecture",
     "CFD",
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Muhammet Ali Yavuz" }],
   openGraph: {
-    title: "Muhammet Ali Yavuz - Naval Architecture",
+    title: "Muhammet Ali Yavuz - Naval Architect and Ocean Engineer",
     description:
-      "Naval Architecture & Ocean Engineering portfolio. CFD Engineer, Software Architect.",
+      "Portfolio of Muhammet Ali Yavuz, Naval Architect and Ocean Engineer (B.Sc. Shipbuilding and Ocean Engineering, ITU): CFD, experimental hydrodynamics and engineering automation.",
     type: "website",
   },
 };
