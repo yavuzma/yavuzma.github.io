@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import VisitorTracker from "./components/VisitorTracker";
 import SmoothScroll from "./components/SmoothScroll";
 
 const inter = Inter({
@@ -69,7 +68,7 @@ export default function RootLayout({
             "font-src 'self' data: https://fonts.gstatic.com",
             "img-src 'self' data: blob: https:",
             "worker-src 'self' blob:",
-            "connect-src 'self' blob: data: https://ipapi.co https://script.google.com",
+            "connect-src 'self' blob: data:",
             "frame-ancestors 'none'",
           ].join("; ")}
         />
@@ -87,7 +86,6 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${jakarta.variable} ${ibmPlexMono.variable}`}>
         <SmoothScroll />
-        <VisitorTracker />
         {children}
       </body>
     </html>
