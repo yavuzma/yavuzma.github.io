@@ -10,8 +10,7 @@ export default function SelectedWork() {
         <section id="work" className="section section--alt noise" aria-labelledby="work-title">
             <div className="container">
                 <div className="section__head">
-                    <p className="eyebrow">Projects</p>
-                    <h2 id="work-title" className="section__title">CFD, ship design and <span className="accent">engineering software</span></h2>
+                    <h2 id="work-title" className="section__title"><span className="accent">Projects</span></h2>
                 </div>
 
                 <div className="work-list">

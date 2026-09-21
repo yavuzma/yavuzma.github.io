@@ -5,8 +5,7 @@ export default function ExperienceSection() {
         <section id="experience" className="section" aria-labelledby="experience-title">
             <div className="container">
                 <div className="section__head">
-                    <p className="eyebrow">Experience</p>
-                    <h2 id="experience-title" className="section__title">Research, laboratory and <span className="accent">shipyard work</span></h2>
+                    <h2 id="experience-title" className="section__title"><span className="accent">Experiences</span></h2>
                 </div>
 
                 <ol className="roles">

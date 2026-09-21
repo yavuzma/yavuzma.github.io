@@ -10,7 +10,6 @@ export default function AboutSection() {
         <section id="about" className="section section--alt noise" aria-labelledby="about-title">
             <div className="container">
                 <div className="section__head">
-                    <p className="eyebrow">About</p>
                     <h2 id="about-title" className="section__title">About <span className="accent">me</span></h2>
                 </div>
 

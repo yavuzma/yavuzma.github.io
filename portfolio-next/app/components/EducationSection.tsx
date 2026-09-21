@@ -9,7 +9,6 @@ export default function EducationSection() {
         <section id="education" className="section" aria-labelledby="education-title">
             <div className="container">
                 <div className="section__head">
-                    <p className="eyebrow">Education</p>
                     <h2 id="education-title" className="section__title">Education and <span className="accent">certifications</span></h2>
                 </div>
 

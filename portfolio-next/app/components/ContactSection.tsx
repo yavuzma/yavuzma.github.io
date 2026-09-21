@@ -15,7 +15,6 @@ export default function ContactSection() {
         <section id="contact" className="section section--alt noise" aria-labelledby="contact-title">
             <div className="container">
                 <div className="section__head">
-                    <p className="eyebrow">Contact</p>
                     <h2 id="contact-title" className="section__title">Get in <span className="accent">touch</span></h2>
                 </div>
                 <p className="contact-lead">Open to research and engineering opportunities.</p>
