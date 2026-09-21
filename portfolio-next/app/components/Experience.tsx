@@ -8,7 +8,7 @@ const experiences = [
         period: "Sep 2026 - Present",
         title: "Researcher",
         company: "CENTEC, Instituto Superior Técnico",
-        companyUrl: "https://centec.tecnico.ulisboa.pt/",
+        companyUrl: "http://www.centec.tecnico.ulisboa.pt/centec/index.aspx",
         current: true,
         fullTime: true,
         internship: true,
