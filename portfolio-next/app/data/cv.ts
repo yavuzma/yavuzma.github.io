@@ -8,7 +8,6 @@ export const cvHref = `/${cvFileName}`;
 export const profile = {
     name: "Muhammet Ali Yavuz",
     title: "Naval Architect and Ocean Engineer",
-    born: "August 2003",
     location: "Lisbon, Portugal",
     email: "yavuzmu21@itu.edu.tr",
     website: { label: "yavuzma.github.io", url: "https://yavuzma.github.io" },
