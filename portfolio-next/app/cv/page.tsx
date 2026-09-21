@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { profile, education, experience, skills, languages, certifications, memberships, activities, interests, cvHref, cvFileName } from "../data/cv";
+import { profile, education, educationLine, experience, skills, languages, certifications, memberships, activities, interests, cvHref, cvFileName } from "../data/cv";
 import { projects } from "../data/projects";
 
 // HTML version of the CV. It reads the same data as the PDF (app/data/cv.ts), so the two cannot drift apart.
@@ -49,7 +49,7 @@ export default function CVPage() {
                                 <h3>{e.degree}<span>, {e.school}</span></h3>
                                 <span className="cv-date">{e.period}</span>
                             </div>
-                            <p>{e.details.join(" · ")}</p>
+                            <p>{educationLine(e)}</p>
                         </div>
                     ))}
                 </Section>

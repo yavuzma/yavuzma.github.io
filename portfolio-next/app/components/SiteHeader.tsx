@@ -1,6 +1,5 @@
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
-import { profile } from "../data/cv";
 
 const links = [
     { href: "/#work", label: "Projects" },
@@ -14,7 +13,7 @@ export default function SiteHeader() {
         <header className="site-header">
             <a className="skip-link" href="#main">Skip to content</a>
             <div className="container site-header__inner">
-                <Link href="/" className="brand">{profile.name}</Link>
+                <Link href="/" className="brand">Muhammet Ali <span>Yavuz</span></Link>
                 <nav className="site-nav" aria-label="Main">
                     {links.map((l) => (
                         <Link key={l.href} href={l.href}>{l.label}</Link>

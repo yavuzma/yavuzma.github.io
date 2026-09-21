@@ -8,22 +8,24 @@ const pick = (ids: string[]) => ids.map((id) => projects.find((p) => p.id === id
 
 export default function SelectedWork() {
     return (
-        <section id="work" className="section" aria-labelledby="work-title">
+        <section id="work" className="section section--alt noise" aria-labelledby="work-title">
             <div className="container">
                 <div className="section__head">
                     <p className="eyebrow">Projects</p>
-                    <h2 id="work-title" className="section__title">CFD, ship design and engineering software</h2>
+                    <h2 id="work-title" className="section__title">CFD, ship design and <span className="accent">engineering software</span></h2>
                 </div>
 
                 <div className="work-list">
                     {pick(FEATURED).map((p) => (
-                        <article key={p.id} className="work-item">
+                        <article key={p.id} className="work-item glass shine lift reveal">
                             <Link href={`/work/${p.id}/`} className={`work-item__media${p.imageStyle?.includes("contain") ? " work-item__media--contain" : ""}`} tabIndex={-1} aria-hidden="true">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img src={p.image} alt="" loading="lazy" decoding="async" />
                             </Link>
-                            <div>
-                                <p className="work-item__tag">{p.badge}</p>
+                            <div className="work-item__body">
+                                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                                    {p.badge.split("·").map((t) => <span key={t} className="tag">{t.trim()}</span>)}
+                                </div>
                                 <h3 className="work-item__title"><Link href={`/work/${p.id}/`}>{p.title}</Link></h3>
                                 <p className="work-item__desc">{p.shortDesc}</p>
                                 <dl className="facts">
@@ -42,7 +44,7 @@ export default function SelectedWork() {
 
                 <div className="work-more">
                     {pick(MORE).map((p) => (
-                        <Link key={p.id} href={`/work/${p.id}/`} className="work-more__item">
+                        <Link key={p.id} href={`/work/${p.id}/`} className="work-more__item glass shine lift reveal">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img src={p.image} alt="" loading="lazy" decoding="async" />
                             <div>

@@ -1,5 +1,5 @@
 import { Document, Page, Text, View, Link, StyleSheet } from "@react-pdf/renderer";
-import { profile, education, experience, skills, languages, certifications, memberships, activities, interests } from "../data/cv";
+import { profile, education, educationLine, experience, skills, languages, certifications, memberships, activities, interests } from "../data/cv";
 import { projects } from "../data/projects";
 
 // Rendered to a static PDF at build time by scripts/build-cv.tsx, which also registers the "Inter" font.
@@ -79,7 +79,7 @@ export default function CVDocument() {
                                 <Text style={s.heading}>{e.degree}<Text style={s.org}>, {e.school}</Text></Text>
                                 <Text style={s.date}>{e.period}</Text>
                             </View>
-                            <Text>{e.details.join("  ·  ")}</Text>
+                            <Text>{educationLine(e)}</Text>
                         </View>
                     ))}
                 </Section>

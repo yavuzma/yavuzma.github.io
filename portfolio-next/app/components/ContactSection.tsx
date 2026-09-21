@@ -2,44 +2,31 @@ import Link from "next/link";
 import { profile, cvHref, cvFileName } from "../data/cv";
 
 export default function ContactSection() {
-    return (
-        <section id="contact" className="section" aria-labelledby="contact-title">
-            <div className="container contact">
-                <div>
-                    <div className="section__head">
-                        <p className="eyebrow">Contact</p>
-                        <h2 id="contact-title" className="section__title">Get in touch</h2>
-                    </div>
-                    <p className="contact__lead">
-                        Open to research and engineering opportunities.
-                    </p>
-                </div>
+    const items = [
+        { label: "Email", value: <a href={`mailto:${profile.email}`}>{profile.email}</a> },
+        { label: "LinkedIn", value: <a href={profile.linkedin.url}>{profile.linkedin.label}</a> },
+        { label: "GitHub", value: <a href={profile.github.url}>{profile.github.label}</a> },
+        { label: "Location", value: profile.location },
+        { label: "CV", value: <><a href={cvHref} download={cvFileName}>PDF</a> · <Link href="/cv/">web version</Link></> },
+        { label: "References", value: "Academic and professional references are available on request." },
+    ];
 
-                <dl className="kv">
-                    <div>
-                        <dt>Email</dt>
-                        <dd><a href={`mailto:${profile.email}`}>{profile.email}</a></dd>
-                    </div>
-                    <div>
-                        <dt>LinkedIn</dt>
-                        <dd><a href={profile.linkedin.url}>{profile.linkedin.label}</a></dd>
-                    </div>
-                    <div>
-                        <dt>GitHub</dt>
-                        <dd><a href={profile.github.url}>{profile.github.label}</a></dd>
-                    </div>
-                    <div>
-                        <dt>Location</dt>
-                        <dd>{profile.location}</dd>
-                    </div>
-                    <div>
-                        <dt>CV</dt>
-                        <dd><a href={cvHref} download={cvFileName}>PDF</a> · <Link href="/cv/">web version</Link></dd>
-                    </div>
-                    <div>
-                        <dt>References</dt>
-                        <dd>Academic and professional references are available on request.</dd>
-                    </div>
+    return (
+        <section id="contact" className="section section--alt noise" aria-labelledby="contact-title">
+            <div className="container">
+                <div className="section__head">
+                    <p className="eyebrow">Contact</p>
+                    <h2 id="contact-title" className="section__title">Get in <span className="accent">touch</span></h2>
+                </div>
+                <p className="contact-lead">Open to research and engineering opportunities.</p>
+
+                <dl className="contact-grid">
+                    {items.map((i) => (
+                        <div key={i.label} className="contact-card glass shine lift reveal">
+                            <dt>{i.label}</dt>
+                            <dd>{i.value}</dd>
+                        </div>
+                    ))}
                 </dl>
             </div>
         </section>

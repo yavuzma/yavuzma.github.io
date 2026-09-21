@@ -44,7 +44,8 @@ export default async function WorkPage({ params }: Params) {
     return (
         <>
             <SiteHeader />
-            <main id="main" className="case">
+            <main id="main" className="case noise">
+                <div className="case__glow" aria-hidden="true" />
                 <article className="container">
                     <p className="breadcrumb"><Link href="/#work">← All projects</Link></p>
 
@@ -84,7 +85,7 @@ export default async function WorkPage({ params }: Params) {
 
                         <aside className="case__aside" aria-label="Summary">
                             {project.modal.sidebarSections.map((s) => (
-                                <section key={s.title} aria-label={s.title}>
+                                <section key={s.title} aria-label={s.title} className="glass">
                                     <h2>{s.title}</h2>
                                     <ul>{s.items.map((i) => <li key={i}>{i}</li>)}</ul>
                                 </section>

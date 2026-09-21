@@ -24,9 +24,14 @@ export type EducationEntry = {
     school: string;
     location: string;
     period: string;
+    grade?: { label: string; value: string; scale: string };
     details: string[];
     verify?: { url: string; code: string };
 };
+
+// One line for the CV: grade first, then the details.
+export const educationLine = (e: EducationEntry) =>
+    [...(e.grade ? [`${e.grade.label} ${e.grade.value} / ${e.grade.scale}`] : []), ...e.details].join("  ·  ");
 
 export const education: EducationEntry[] = [
     {
@@ -34,14 +39,16 @@ export const education: EducationEntry[] = [
         school: "Istanbul Technical University",
         location: "Istanbul, Türkiye",
         period: "Sep 2021 - Aug 2026",
-        details: ["GPA 3.25 / 4.00", "5-year programme including a 1-year English preparatory year"],
+        grade: { label: "GPA", value: "3.25", scale: "4.00" },
+        details: ["5-year programme including a 1-year English preparatory year"],
     },
     {
         degree: "ATHENS Exchange Programme (TUD14)",
         school: "Delft University of Technology",
         location: "Delft, Netherlands",
         period: "14-21 Mar 2026",
-        details: ["Computer Aided Analysis & Optimization of Sustainable Electrical Power Systems", "Local mark 9 / 10"],
+        grade: { label: "Local mark", value: "9", scale: "10" },
+        details: ["Computer Aided Analysis & Optimization of Sustainable Electrical Power Systems"],
         verify: { url: "https://register.athensnetwork.eu/verify", code: "BN22-JYBT-79WV-HDCV" },
     },
 ];
