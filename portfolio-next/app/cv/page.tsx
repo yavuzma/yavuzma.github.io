@@ -67,7 +67,7 @@ export default function CVPage() {
                     ))}
                 </Section>
 
-                <Section title="Selected projects">
+                <Section title="Projects">
                     {cvProjects.map((p) => (
                         <div key={p.id} className="cv-entry">
                             <h3><Link href={`/work/${p.id}/`}>{p.cv.title}</Link></h3>

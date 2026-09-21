@@ -19,7 +19,7 @@ export default function Hero() {
                         <li>{profile.availability}</li>
                     </ul>
                     <div className="hero__actions">
-                        <a className="btn btn--primary" href="#work">Selected work</a>
+                        <a className="btn btn--primary" href="#work">Projects</a>
                         <DownloadCVButton className="btn btn--ghost" />
                     </div>
                 </div>

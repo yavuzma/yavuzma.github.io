@@ -11,7 +11,7 @@ export default function SelectedWork() {
         <section id="work" className="section" aria-labelledby="work-title">
             <div className="container">
                 <div className="section__head">
-                    <p className="eyebrow">Selected work</p>
+                    <p className="eyebrow">Projects</p>
                     <h2 id="work-title" className="section__title">CFD, ship design and engineering software</h2>
                 </div>
 

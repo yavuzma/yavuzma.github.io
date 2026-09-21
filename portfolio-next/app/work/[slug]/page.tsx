@@ -46,7 +46,7 @@ export default async function WorkPage({ params }: Params) {
             <SiteHeader />
             <main id="main" className="case">
                 <article className="container">
-                    <p className="breadcrumb"><Link href="/#work">← All work</Link></p>
+                    <p className="breadcrumb"><Link href="/#work">← All projects</Link></p>
 
                     <header className="case__header">
                         <p className="case__tag">{project.modal.badge}{meta && ` · ${meta}`}</p>
@@ -92,7 +92,7 @@ export default async function WorkPage({ params }: Params) {
                         </aside>
                     </div>
 
-                    <nav className="case__nav" aria-label="More work">
+                    <nav className="case__nav" aria-label="More projects">
                         <Link href={`/work/${prev.id}/`}>← {prev.title}</Link>
                         <Link href={`/work/${next.id}/`}>{next.title} →</Link>
                     </nav>

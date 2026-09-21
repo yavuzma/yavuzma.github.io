@@ -97,7 +97,7 @@ export default function CVDocument() {
                     ))}
                 </Section>
 
-                <Section title="Selected projects">
+                <Section title="Projects">
                     {cvProjects.map((p) => (
                         <View key={p.id} style={s.entry} wrap={false}>
                             <Text style={s.heading}>{p.cv.title}</Text>
