@@ -1,5 +1,8 @@
 import CertificateDialog from "./CertificateDialog";
-import { education, certifications, memberships, activities } from "../data/cv";
+import { education, certifications, memberships } from "../data/cv";
+
+// U+FE0E asks for the text glyph, so the arrow does not render as an emoji tile.
+const ARROW = "↗︎";
 
 export default function EducationSection() {
     return (
@@ -14,7 +17,9 @@ export default function EducationSection() {
                     {education.map((e) => (
                         <article key={e.degree} className="card glass shine lift reveal">
                             <h3>{e.degree}</h3>
-                            <p className="card__sub">{e.school}</p>
+                            <p className="card__sub">
+                                {e.schoolUrl ? <a href={e.schoolUrl}>{e.school} {ARROW}</a> : e.school}
+                            </p>
                             <p className="card__meta">{e.period} · {e.location}</p>
                             {e.grade && (
                                 <p className="card__stat">
@@ -25,9 +30,17 @@ export default function EducationSection() {
                             <ul>
                                 {e.details.map((d) => <li key={d}>{d}</li>)}
                             </ul>
+                            {e.clubs && (
+                                <div className="card__clubs">
+                                    <p className="card__label">Clubs</p>
+                                    <div className="skill__tags">
+                                        {e.clubs.map((c) => <span key={c} className="tag">⚓ {c}</span>)}
+                                    </div>
+                                </div>
+                            )}
                             {e.verify && (
                                 <p className="card__meta" style={{ marginTop: "0.8rem" }}>
-                                    Verification code {e.verify.code} · <a href={e.verify.url}>verify {"↗︎"}</a>
+                                    Verification code {e.verify.code} · <a href={e.verify.url}>verify {ARROW}</a>
                                 </p>
                             )}
                         </article>
@@ -41,18 +54,17 @@ export default function EducationSection() {
                             <span className="cert__name">{c.name}</span>
                             <span className="cert__issuer">{c.issuer}{c.date && `, ${c.date}`}</span>
                             <span className="cert__action">
-                                {c.url ? <a href={c.url}>Verify {"↗︎"}</a> : c.certificate ? <CertificateDialog certificate={c.certificate} /> : null}
+                                {c.url ? <a href={c.url}>Verify {ARROW}</a> : c.certificate ? <CertificateDialog certificate={c.certificate} /> : null}
                             </span>
                         </li>
                     ))}
                 </ul>
 
-                <h3 className="sub-head">Memberships and activities</h3>
+                <h3 className="sub-head">Memberships</h3>
                 <p className="inline-list">
                     {memberships.map((m) => (
-                        <span key={m.name}><a href={m.url}>{m.name}</a> ({m.full}), {m.role}. </span>
+                        <span key={m.name}><a href={m.url}>{m.name} {ARROW}</a> ({m.full}), {m.role}.</span>
                     ))}
-                    {activities.join(". ")}.
                 </p>
             </div>
         </section>

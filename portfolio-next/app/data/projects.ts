@@ -219,19 +219,7 @@ export const projects: Project[] = [
                         { label: "Backend", value: "AsyncIO (Event Loop)" },
                         { label: "Protocol", value: "RS-232 / PySerial" },
                         { label: "Data Handling", value: "Pandas & OpenPyXL" },
-                        { label: "Platform", value: "Windows (Production)" },
-                    ],
-                },
-                {
-                    title: "Visual Interface",
-                    type: "gallery",
-                    gallery: [
-                        {
-                            src: "/images/projects/alicat_flowmeter/gui.png",
-                            alt: "Alicat Control Interface GUI",
-                            caption:
-                                "Main Interface: Real-time plotting, manual controls, and sequence running status.",
-                        },
+                        { label: "Platform", value: "Windows" },
                     ],
                 },
             ],
@@ -389,7 +377,6 @@ export const projects: Project[] = [
                         { src: "/images/projects/darpa/parts_darpa.png", alt: "SUBOFF Geometry Parts", caption: "DARPA SUBOFF geometry - Bare hull, fairwater, and ring wings" },
                         { src: "/images/projects/darpa/domain_dimensions.png", alt: "Computational Domain", caption: "Computational domain dimensions (LBP-based sizing)" },
                         { src: "/images/projects/darpa/boundary_types.png", alt: "Boundary Conditions", caption: "Boundary condition setup - Velocity inlet, pressure outlet, symmetry planes" },
-                        { src: "/images/projects/darpa/mesh.png", alt: "Volume Mesh", caption: "Volume mesh refinement around hull and appendages" },
                         { src: "/images/projects/darpa/darpa_graph.png", alt: "Resistance Comparison", caption: "Resistance vs. speed - CFD vs. EFD comparison for AFF1, AFF3, AFF8" },
                     ],
                 },
@@ -461,7 +448,6 @@ export const projects: Project[] = [
                     title: "Visual Results",
                     type: "gallery",
                     gallery: [
-                        { src: "/images/projects/offshore_platform/1.png", alt: "Platform 3D Model - Front", caption: "Semi-submersible platform - Rhinoceros 3D model (front view)" },
                         { src: "/images/projects/offshore_platform/2.png", alt: "Platform 3D Model - Rear", caption: "Platform 3D model - Rear perspective with helipad visible" },
                         { src: "/images/projects/offshore_platform/pressure_distribution.png", alt: "Pressure Distribution", caption: "CFD pressure distribution on pontoon hulls (ANSYS Fluent)" },
                         { src: "/images/projects/offshore_platform/resistance_graph.png", alt: "Resistance Graph", caption: "Resistance vs. speed curve - Maxsurf analysis" },

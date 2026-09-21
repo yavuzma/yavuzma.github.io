@@ -1,6 +1,11 @@
 import { profile, skills, languages } from "../data/cv";
 
 export default function AboutSection() {
+    const groups = [
+        ...skills,
+        { label: "Languages", items: languages.map((l) => `${l.name} - ${l.level}`) },
+    ];
+
     return (
         <section id="about" className="section section--alt noise" aria-labelledby="about-title">
             <div className="container">
@@ -15,20 +20,14 @@ export default function AboutSection() {
                     </div>
 
                     <div className="skill-grid">
-                        {skills.map((g) => (
-                            <div key={g.label} className="skill glass shine reveal">
+                        {groups.map((g) => (
+                            <div key={g.label} className="skill glass shine lift reveal">
                                 <h3>{g.label}</h3>
                                 <div className="skill__tags">
                                     {g.items.map((i) => <span key={i} className="tag">{i}</span>)}
                                 </div>
                             </div>
                         ))}
-                        <div className="skill glass shine reveal">
-                            <h3>Languages</h3>
-                            <div className="skill__tags">
-                                {languages.map((l) => <span key={l.name} className="tag">{l.name}: {l.level}</span>)}
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

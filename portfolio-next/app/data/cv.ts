@@ -22,10 +22,12 @@ export const profile = {
 export type EducationEntry = {
     degree: string;
     school: string;
+    schoolUrl?: string;
     location: string;
     period: string;
     grade?: { label: string; value: string; scale: string };
     details: string[];
+    clubs?: string[];
     verify?: { url: string; code: string };
 };
 
@@ -37,14 +39,17 @@ export const education: EducationEntry[] = [
     {
         degree: "B.Sc. Shipbuilding and Ocean Engineering",
         school: "Istanbul Technical University",
+        schoolUrl: "https://www.itu.edu.tr/en",
         location: "Istanbul, Türkiye",
         period: "Sep 2021 - Aug 2026",
         grade: { label: "GPA", value: "3.25", scale: "4.00" },
         details: ["5-year programme including a 1-year English preparatory year"],
+        clubs: ["ITU Shipbuilding Engineering Club"],
     },
     {
         degree: "ATHENS Exchange Programme (TUD14)",
         school: "Delft University of Technology",
+        schoolUrl: "https://www.tudelft.nl/en/",
         location: "Delft, Netherlands",
         period: "14-21 Mar 2026",
         grade: { label: "Local mark", value: "9", scale: "10" },

@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { projects, type Project } from "../data/projects";
 
-const FEATURED = ["darpa", "kcs", "tcsg"];
-const MORE = ["alicat", "offshore"];
+const ORDER = ["darpa", "kcs", "tcsg", "alicat", "offshore"];
 
 const pick = (ids: string[]) => ids.map((id) => projects.find((p) => p.id === id)).filter((p): p is Project => p !== undefined);
 
@@ -16,7 +15,7 @@ export default function SelectedWork() {
                 </div>
 
                 <div className="work-list">
-                    {pick(FEATURED).map((p) => (
+                    {pick(ORDER).map((p) => (
                         <article key={p.id} className="work-item glass shine lift reveal">
                             <Link href={`/work/${p.id}/`} className={`work-item__media${p.imageStyle?.includes("contain") ? " work-item__media--contain" : ""}`} tabIndex={-1} aria-hidden="true">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -39,19 +38,6 @@ export default function SelectedWork() {
                                 <Link href={`/work/${p.id}/`} className="read-more">Read case study →</Link>
                             </div>
                         </article>
-                    ))}
-                </div>
-
-                <div className="work-more">
-                    {pick(MORE).map((p) => (
-                        <Link key={p.id} href={`/work/${p.id}/`} className="work-more__item glass shine lift reveal">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={p.image} alt="" loading="lazy" decoding="async" />
-                            <div>
-                                <h3>{p.title}</h3>
-                                <p>{p.shortDesc}</p>
-                            </div>
-                        </Link>
                     ))}
                 </div>
             </div>
