@@ -329,12 +329,12 @@ export default function CVDocument() {
 
                             <View style={s.expItem}>
                                 <View style={s.entryHeader}>
-                                    <Text style={s.entryRole}>Erasmus+ Research Trainee</Text>
-                                    <Text style={s.entryDate}>Sep 2026 - Present · Full-time</Text>
+                                    <Text style={s.entryRole}>Researcher</Text>
+                                    <Text style={s.entryDate}>Sep 2026 - Present · Full-time Internship</Text>
                                 </View>
-                                <Text style={s.entrySubtitle}>CENTEC, IST Lisbon · Host supervisor: Prof. Yordan Garbatov</Text>
-                                <Bullet>Underwater radiated noise (URN) of benchmark propellers in a submerged-body wake.</Bullet>
-                                <Bullet>STAR-CCM+ turbulence-model study; numerical URN basis for emerging IMO noise rules.</Bullet>
+                                <Text style={s.entrySubtitle}>CENTEC, Instituto Superior Técnico, University of Lisbon</Text>
+                                <Bullet>Turbulence modelling.</Bullet>
+                                <Bullet>Hydroacoustic characterization of a propeller operating in a wake.</Bullet>
                             </View>
 
                             <View style={s.expItem}>

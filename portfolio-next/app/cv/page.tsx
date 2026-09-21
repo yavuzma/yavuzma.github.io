@@ -110,8 +110,8 @@ export default function CVPage() {
                                         <h3 className="font-bold text-slate-900 text-[0.95rem]">CENTEC, Instituto Superior Técnico</h3>
                                         <span className="text-xs font-bold text-slate-500 uppercase">Sep 2026 - Present</span>
                                     </div>
-                                    <p className="text-[0.85rem] font-bold text-blue-700">Erasmus+ Research Trainee</p>
-                                    <p className="text-xs text-slate-600 font-medium mt-1">Underwater radiated noise (URN) of benchmark propellers in the wake of a submerged body.<br />Turbulence-model study in STAR-CCM+ toward a tractable numerical basis for URN prediction.</p>
+                                    <p className="text-[0.85rem] font-bold text-blue-700">Researcher</p>
+                                    <p className="text-xs text-slate-600 font-medium mt-1">Turbulence modelling.<br />Hydroacoustic characterization of a propeller operating in a wake.</p>
                                 </div>
 
                                 <div>

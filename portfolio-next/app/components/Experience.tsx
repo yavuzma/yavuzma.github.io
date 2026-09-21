@@ -6,17 +6,16 @@ import { useRef, useState, useEffect } from "react";
 const experiences = [
     {
         period: "Sep 2026 - Present",
-        title: "Erasmus+ Research Trainee",
+        title: "Researcher",
         company: "CENTEC, Instituto Superior Técnico",
         companyUrl: "https://centec.tecnico.ulisboa.pt/",
         current: true,
         fullTime: true,
         internship: true,
-        description: "Centre for Marine Technology and Ocean Engineering, University of Lisbon. Host supervisor: Prof. Yordan Garbatov (CENTEC); home supervisor: Prof. Uğur Oral Ünal (ITU Cavitation Tunnel).",
+        description: "Centre for Marine Technology and Ocean Engineering, University of Lisbon.",
         bullets: [
-            "Underwater radiated noise (URN) of benchmark propellers operating in the wake of a submerged body.",
-            "Turbulence-model study on a reference propeller in STAR-CCM+, checked against open-water thrust and torque data.",
-            "Building a tractable numerical basis for URN prediction, aimed at the emerging IMO underwater noise requirements for commercial shipping.",
+            "Turbulence modelling.",
+            "Hydroacoustic characterization of a propeller operating in a wake.",
         ],
     },
     {
