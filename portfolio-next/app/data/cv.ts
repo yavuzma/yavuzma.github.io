@@ -159,6 +159,7 @@ export const experience: ExperienceEntry[] = [
     {
         role: "Mechanical Engineering Intern",
         org: "Mensa Makina",
+        orgUrl: "https://www.mensamakina.com/",
         period: "Aug - Sep 2023",
         current: false,
         employment: "Full-time",
