@@ -1,36 +1,45 @@
+import Link from "next/link";
 import DownloadCVButton from "./DownloadCVButton";
+import { profile } from "../data/cv";
 
 export default function Hero() {
     return (
-        <section id="home" className="flex items-center justify-center" style={{ minHeight: "80vh", padding: "8rem 2rem 5rem", background: "var(--bg)" }}>
-            <div className="text-center max-w-3xl mx-auto">
-                <p style={{ fontFamily: "var(--fm)", fontSize: "0.78rem", color: "var(--t2)", marginBottom: "1.5rem" }}>
-                    B.Sc. Shipbuilding and Ocean Engineering, ITU · b. August 2003
-                </p>
-
-                <h1 style={{ fontFamily: "var(--fh)", fontSize: "clamp(2.8rem, 8vw, 5.5rem)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-1.5px", color: "var(--t1)", marginBottom: "1.25rem" }}>
-                    Muhammet Ali Yavuz
-                </h1>
-
-                <p style={{ fontFamily: "var(--fb)", fontSize: "1.15rem", fontWeight: 500, color: "var(--cy)", marginBottom: "1rem" }}>
-                    Naval Architect and Ocean Engineer
-                </p>
-
-                <p style={{ fontFamily: "var(--fb)", fontSize: "0.95rem", color: "var(--t2)", marginBottom: "2.5rem" }}>
-                    Based in Lisbon, Portugal · Available from August 2027
-                </p>
-
-                <div className="flex justify-center gap-4 flex-wrap">
-                    <a href="#projects"
-                        className="inline-flex items-center gap-2 rounded-full"
-                        style={{ padding: "0.9rem 2rem", background: "var(--cy)", color: "var(--bg)", fontFamily: "var(--fb)", fontSize: "0.95rem", fontWeight: 600, textDecoration: "none" }}>
-                        Selected work
-                    </a>
-                    <DownloadCVButton
-                        className="inline-flex items-center gap-2 rounded-full border cursor-pointer"
-                        style={{ padding: "0.9rem 2rem", borderColor: "var(--bdr)", color: "var(--t1)", fontFamily: "var(--fb)", fontSize: "0.95rem", fontWeight: 600, background: "transparent" }}
-                    />
+        <section className="hero" aria-labelledby="hero-name">
+            <div className="container hero__grid">
+                <div>
+                    <p className="hero__meta">B.Sc. Shipbuilding and Ocean Engineering, ITU · b. {profile.born}</p>
+                    <h1 id="hero-name" className="hero__name">{profile.name}</h1>
+                    <p className="hero__title">{profile.title}</p>
+                    <p className="hero__lede">
+                        I study marine hydrodynamics through CFD, compare the results with experiments, and build Python tools that automate laboratory tests.
+                    </p>
+                    <ul className="hero__status">
+                        <li>Research trainee at CENTEC, Instituto Superior Técnico</li>
+                        <li>{profile.location}</li>
+                        <li>{profile.availability}</li>
+                    </ul>
+                    <div className="hero__actions">
+                        <a className="btn btn--primary" href="#work">Selected work</a>
+                        <DownloadCVButton className="btn btn--ghost" />
+                    </div>
                 </div>
+
+                <figure className="figure">
+                    <div className="figure__frame">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src="/images/projects/kcs_hull_with_rudder/3.png"
+                            alt="Contour plot of free-surface elevation around the KCS hull"
+                            width={891}
+                            height={638}
+                            fetchPriority="high"
+                        />
+                    </div>
+                    <figcaption>
+                        KCS container ship with rudder: Kelvin wake resolved as free-surface elevation in an unsteady RANS + VOF simulation (STAR-CCM+, run 3).{" "}
+                        <Link href="/work/kcs/">Read the case study</Link>
+                    </figcaption>
+                </figure>
             </div>
         </section>
     );

@@ -27,13 +27,25 @@ export interface ProjectSidebarSection {
 
 export interface ProjectModalSection {
     title: string;
-    type: "text" | "specs" | "table" | "gallery" | "list" | "data-table";
+    type: "text" | "specs" | "table" | "gallery" | "list" | "data-table" | "runs";
     content?: string[];
     specs?: ProjectSpec[];
     table?: ProjectTable;
     gallery?: ProjectGalleryImage[];
     items?: string[];
     dataTable?: { rows: { th: string; td: string; th2?: string; td2?: string }[] };
+}
+
+// One simulation run of a parameter study, shown in the run viewer on the case study page.
+export interface ProjectRun {
+    label: string;
+    turbulence: string;
+    mesh: string;
+    timeStep: string;
+    drag: string;
+    ct: string;
+    deviation: string;
+    image: string;
 }
 
 export interface Project {
@@ -44,6 +56,13 @@ export interface Project {
     shortDesc: string;
     badge: string;
     image: string;
+    imageAlt: string;
+    imageCaption?: string;
+    // What kind of work this was (course, capstone, research...), when known.
+    context?: string;
+    // What the work does not show; stated so results are read at the right strength.
+    limitations?: string[];
+    runs?: ProjectRun[];
     imageStyle?: string;
     gradient: string;
     metrics: { value: string; label: string }[];
@@ -66,6 +85,9 @@ export const projects: Project[] = [
             "Designed for surveillance, environmental response, and special ops, this 69.5m hybrid vessel features Azipod propulsion and extensive mission equipment.",
         badge: "Ship Design · Preliminary",
         image: "/images/projects/undergraduation/side_view.png",
+        imageAlt: "Side profile of the TCSG FISILTI hull form",
+        imageCaption: "Hull form, side profile.",
+        context: "Capstone design project, Istanbul Technical University, Dec 2025.",
         imageStyle: "object-contain p-2",
         gradient: "from-slate-800 to-slate-950",
         metrics: [
@@ -75,7 +97,7 @@ export const projects: Project[] = [
         ],
         modal: {
             badge: "Ship Design · Preliminary",
-            subtitle: "",
+            subtitle: "Preliminary design of a 69.5 m hybrid coast guard vessel with counter-rotating Azipod propulsion",
             meta: [
                 { icon: "calendar", text: "Dec 2025" },
                 { icon: "activity", text: "Preliminary Design" },
@@ -167,6 +189,8 @@ export const projects: Project[] = [
             "Desktop app for real-time control, monitoring, and automated data logging.",
         badge: "Python · GUI · Automation",
         image: "/images/projects/alicat_flowmeter/gui.png",
+        imageAlt: "Screenshot of the Alicat mass flow controller control interface",
+        imageCaption: "Control interface: live readings, setpoint control and test sequences.",
         gradient: "from-slate-950 to-slate-700",
         metrics: [
             { value: "Python", label: "Language" },
@@ -232,9 +256,22 @@ export const projects: Project[] = [
         cv: { title: "KCS Hull with Rudder - CFD Resistance", line: "Unsteady RANS + VOF in STAR-CCM+; five-run sensitivity study; -2.7% to +0.8% deviation from EFD." },
         title: "KCS Hull with Rudder - Resistance Prediction",
         shortDesc:
-            "Free surface CFD of KCS container ship with rudder. Unsteady RANS with VOF across 3 mesh levels.",
+            "Free-surface CFD of the KCS container ship with rudder: unsteady RANS with VOF in a five-run sensitivity study, compared with experimental (EFD) resistance.",
         badge: "CFD · STAR-CCM+",
-        image: "/images/projects/kcs_hull_with_rudder/3_free_surface.png",
+        image: "/images/projects/kcs_hull_with_rudder/1.png",
+        imageAlt: "Contour plot of free-surface elevation around the KCS hull",
+        imageCaption: "Free-surface elevation around the hull, run 1 (k-ε, 1.05 M cells, Δt = 0.04 s).",
+        limitations: [
+            "Mesh density, time step and turbulence model change together between runs, so the study cannot attribute a change in resistance to any single parameter. It is a sensitivity study, not a formal grid-convergence (verification) study.",
+            "Run 3, with the finest mesh and time step, resolves the Kelvin wake most sharply yet deviates most from EFD (-2.7%). The closest agreement (run 1, -0.2%) should not be read as the most accurate setup without a controlled refinement study.",
+        ],
+        runs: [
+            { label: "Run 1", turbulence: "k-ε", mesh: "1.05 M", timeStep: "0.04 s", drag: "83.668 N", ct: "0.00364", deviation: "-0.22%", image: "/images/projects/kcs_hull_with_rudder/1.png" },
+            { label: "Run 2", turbulence: "k-ε", mesh: "1.99 M", timeStep: "0.04 s", drag: "84.483 N", ct: "0.00368", deviation: "+0.75%", image: "/images/projects/kcs_hull_with_rudder/2.png" },
+            { label: "Run 3", turbulence: "k-ε", mesh: "2.03 M", timeStep: "0.016 s", drag: "81.625 N", ct: "0.00355", deviation: "-2.66%", image: "/images/projects/kcs_hull_with_rudder/3.png" },
+            { label: "Run 4", turbulence: "k-ε", mesh: "1.05 M", timeStep: "0.016 s", drag: "83.094 N", ct: "0.00362", deviation: "-0.90%", image: "/images/projects/kcs_hull_with_rudder/4.png" },
+            { label: "Run 5", turbulence: "k-ω SST", mesh: "1.05 M", timeStep: "0.04 s", drag: "83.046 N", ct: "0.00361", deviation: "-0.96%", image: "/images/projects/kcs_hull_with_rudder/5.png" },
+        ],
         gradient: "from-sky-950 to-sky-600",
         metrics: [
             { value: "-2.7 / +0.8%", label: "range vs EFD" },
@@ -281,15 +318,14 @@ export const projects: Project[] = [
                     },
                 },
                 {
-                    title: "Visual Results",
+                    title: "Compare the runs",
+                    type: "runs",
+                },
+                {
+                    title: "Free surface",
                     type: "gallery",
                     gallery: [
-                        { src: "/images/projects/kcs_hull_with_rudder/1.png", alt: "Case 1", caption: "Case 1: k-ε, 1.05M cells, dt=0.04s (-0.22% deviation)" },
-                        { src: "/images/projects/kcs_hull_with_rudder/2.png", alt: "Case 2", caption: "Case 2: k-ε, 1.99M cells, dt=0.04s (+0.75% deviation)" },
-                        { src: "/images/projects/kcs_hull_with_rudder/3.png", alt: "Case 3", caption: "Case 3: k-ε, 2.03M cells, dt=0.016s (-2.66% deviation)" },
-                        { src: "/images/projects/kcs_hull_with_rudder/4.png", alt: "Case 4", caption: "Case 4: k-ε, 1.05M cells, dt=0.016s (-0.90% deviation)" },
-                        { src: "/images/projects/kcs_hull_with_rudder/5.png", alt: "Case 5", caption: "Case 5: k-ω SST, 1.05M cells, dt=0.04s (-0.96% deviation)" },
-                        { src: "/images/projects/kcs_hull_with_rudder/3_free_surface.png", alt: "Free Surface", caption: "Free Surface Visualization (VOF Method)" },
+                        { src: "/images/projects/kcs_hull_with_rudder/3_free_surface.png", alt: "Side view of the air volume fraction field around the KCS hull", caption: "Volume fraction of air (VOF), side view." },
                     ],
                 },
             ],
@@ -316,6 +352,8 @@ export const projects: Project[] = [
             "Submarine appendage resistance: AFF1, AFF3, AFF8 configurations per ITTC guidelines.",
         badge: "CFD · STAR-CCM+",
         image: "/images/projects/darpa/mesh.png",
+        imageAlt: "Trimmed hexahedral volume mesh around the DARPA SUBOFF hull and appendages",
+        imageCaption: "Volume mesh refinement around the hull and appendages.",
         gradient: "from-slate-900 to-green-900",
         metrics: [
             { value: "0.5%", label: "deviation" },
@@ -383,9 +421,12 @@ export const projects: Project[] = [
         cv: { title: "Offshore Platform - Concept Design", line: "Semi-submersible concept with a 70 × 40 m deck; Rhinoceros 3D modelling, Maxsurf stability and ANSYS Fluent CFD." },
         title: "Offshore Platform - Design & Analysis",
         shortDesc:
-            "Full platform concept: Rhinoceros 3D modeling, Maxsurf stability, ANSYS Fluent CFD.",
+            "Semi-submersible platform concept: Rhinoceros 3D modelling, Maxsurf stability and ANSYS Fluent CFD.",
         badge: "Design · CFD · Maxsurf",
         image: "/images/projects/offshore_platform/1.png",
+        imageAlt: "Rhinoceros 3D model of the semi-submersible drilling platform",
+        imageCaption: "Rhinoceros 3D model of the platform concept.",
+        limitations: ["Conceptual design: no structural analysis was performed."],
         gradient: "from-purple-950 to-purple-700",
         metrics: [
             { value: "70×40m", label: "deck" },

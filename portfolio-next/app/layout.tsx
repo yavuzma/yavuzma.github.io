@@ -1,93 +1,86 @@
-import type { Metadata } from "next";
-import { Inter, IBM_Plex_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "./components/SmoothScroll";
+import { profile } from "./data/cv";
 
 const inter = Inter({
   variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
 });
 
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500"],
+  display: "swap",
 });
 
-const ibmPlexMono = IBM_Plex_Mono({
-  variable: "--font-ibm-plex-mono",
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-});
+const description =
+  "Naval architect and ocean engineer (B.Sc. Shipbuilding and Ocean Engineering, ITU). CFD, comparison with experiments and engineering automation; research trainee at CENTEC, Instituto Superior Técnico.";
 
 export const metadata: Metadata = {
-  title: "Muhammet Ali Yavuz - Naval Architect and Ocean Engineer",
-  description:
-    "Portfolio of Muhammet Ali Yavuz, Naval Architect and Ocean Engineer (B.Sc. Shipbuilding and Ocean Engineering, ITU): CFD, experimental hydrodynamics and engineering automation.",
-  keywords: [
-    "Naval Architecture",
-    "CFD",
-    "Ocean Engineering",
-    "Istanbul Technical University",
-    "Ship Design",
-    "OpenFOAM",
-    "STAR-CCM+",
-    "ANSYS Fluent",
-  ],
-  authors: [{ name: "Muhammet Ali Yavuz" }],
+  metadataBase: new URL(profile.website.url),
+  title: { default: `${profile.name} - ${profile.title}`, template: `%s - ${profile.name}` },
+  description,
+  alternates: { canonical: "/" },
+  authors: [{ name: profile.name, url: profile.website.url }],
   openGraph: {
-    title: "Muhammet Ali Yavuz - Naval Architect and Ocean Engineer",
-    description:
-      "Portfolio of Muhammet Ali Yavuz, Naval Architect and Ocean Engineer (B.Sc. Shipbuilding and Ocean Engineering, ITU): CFD, experimental hydrodynamics and engineering automation.",
     type: "website",
+    url: "/",
+    siteName: profile.name,
+    title: `${profile.name} - ${profile.title}`,
+    description,
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: `${profile.name}, ${profile.title}` }],
   },
+  twitter: { card: "summary_large_image", title: `${profile.name} - ${profile.title}`, description, images: ["/og.png"] },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f7f7f5" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f1215" },
+  ],
+};
+
+// Applies a theme the visitor chose earlier before first paint; with no choice stored, the OS setting wins.
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();`;
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.title,
+  url: profile.website.url,
+  email: `mailto:${profile.email}`,
+  sameAs: [profile.linkedin.url, profile.github.url],
+  alumniOf: { "@type": "CollegeOrUniversity", name: "Istanbul Technical University" },
+  address: { "@type": "PostalAddress", addressLocality: "Lisbon", addressCountry: "PT" },
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* ── Security meta tags (static export - HTTP headers unavailable) ── */}
-        <meta httpEquiv="X-Frame-Options" content="DENY" />
-        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-        <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-        <meta httpEquiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+        {/* Static export: no HTTP headers, so the policy is set here. Inline scripts are Next's own bootstrap and the theme script. */}
         <meta
           httpEquiv="Content-Security-Policy"
           content={[
             "default-src 'self'",
-            // unsafe-eval and wasm-unsafe-eval are required by @react-pdf/renderer
-            // (fontkit/yoga internals) for client-side PDF generation.
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: https://cdnjs.cloudflare.com",
-            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-            "font-src 'self' data: https://fonts.gstatic.com",
-            "img-src 'self' data: blob: https:",
-            "worker-src 'self' blob:",
-            "connect-src 'self' blob: data:",
-            "frame-ancestors 'none'",
+            "script-src 'self' 'unsafe-inline'",
+            "style-src 'self' 'unsafe-inline'",
+            "font-src 'self'",
+            "img-src 'self' data:",
+            "connect-src 'self'",
+            "base-uri 'self'",
+            "form-action 'self'",
           ].join("; ")}
         />
-        <script
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var theme = localStorage.getItem('theme') || 'dark';
-                document.documentElement.setAttribute('data-theme', theme);
-              })();
-            `,
-          }}
-        />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
       </head>
-      <body className={`${inter.variable} ${jakarta.variable} ${ibmPlexMono.variable}`}>
-        <SmoothScroll />
-        {children}
-      </body>
+      <body className={`${inter.variable} ${plexMono.variable}`}>{children}</body>
     </html>
   );
 }

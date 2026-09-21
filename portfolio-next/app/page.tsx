@@ -1,47 +1,25 @@
-"use client";
-
-import { useState } from "react";
-import Navbar from "@/app/components/Navbar";
-import Hero from "@/app/components/Hero";
-import About from "@/app/components/About";
-import Experience from "@/app/components/Experience";
-import Projects from "@/app/components/Projects";
-import ProjectModal from "@/app/components/ProjectModal";
-import Education from "@/app/components/Education";
-import Memberships from "@/app/components/Memberships";
-import Certifications from "@/app/components/Certifications";
-import Contact from "@/app/components/Contact";
-import References from "@/app/components/References";
-import Footer from "@/app/components/Footer";
-import ScrollToTop from "@/app/components/ScrollToTop";
-import { projects, type Project } from "@/app/data/projects";
+import SiteHeader from "./components/SiteHeader";
+import Hero from "./components/Hero";
+import SelectedWork from "./components/SelectedWork";
+import ExperienceSection from "./components/ExperienceSection";
+import AboutSection from "./components/AboutSection";
+import EducationSection from "./components/EducationSection";
+import ContactSection from "./components/ContactSection";
+import SiteFooter from "./components/SiteFooter";
 
 export default function Home() {
-  const [activeProject, setActiveProject] = useState<Project | null>(null);
-
-  const openModal = (id: string) => {
-    const found = projects.find((p) => p.id === id) ?? null;
-    setActiveProject(found);
-  };
-
-  return (
-    <>
-      <Navbar />
-      <Hero />
-      <About />
-      <Experience />
-      <Projects onOpenModal={openModal} />
-      <Education />
-      <Memberships />
-      <Certifications />
-      <Contact />
-      <References />
-      <Footer />
-      <ScrollToTop />
-      <ProjectModal
-        project={activeProject}
-        onClose={() => setActiveProject(null)}
-      />
-    </>
-  );
+    return (
+        <>
+            <SiteHeader />
+            <main id="main">
+                <Hero />
+                <SelectedWork />
+                <ExperienceSection />
+                <AboutSection />
+                <EducationSection />
+                <ContactSection />
+            </main>
+            <SiteFooter />
+        </>
+    );
 }
