@@ -79,15 +79,15 @@ export interface Project {
 export const projects: Project[] = [
     {
         id: "tcsg",
-        cv: { title: "TCSG FISILTI - Hybrid Coast Guard Vessel (undergraduation project)", line: "69.5 m hybrid vessel with counter-rotating Azipod propulsion; 24 kn maximum speed, 63 crew." },
-        title: "Undergraduation Project - TCSG FISILTI (WHISPER)",
+        cv: { title: "TCSG FISILTI - Hybrid Coast Guard Vessel (graduation project)", line: "69.5 m hybrid vessel with counter-rotating Azipod propulsion; 24 kn maximum speed, 63 crew." },
+        title: "Graduation Project - TCSG FISILTI (WHISPER)",
         shortDesc:
             "Designed for surveillance, environmental response, and special ops, this 69.5m hybrid vessel features Azipod propulsion and extensive mission equipment.",
         badge: "Ship Design · Preliminary",
         image: "/images/projects/undergraduation/side_view.png",
         imageAlt: "Side profile of the TCSG FISILTI hull form",
         imageCaption: "Hull form, side profile.",
-        context: "Undergraduation project, Istanbul Technical University, Dec 2025.",
+        context: "Graduation project, Istanbul Technical University, Dec 2025.",
         imageStyle: "object-contain p-2",
         gradient: "from-slate-800 to-slate-950",
         metrics: [
