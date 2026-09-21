@@ -2,3 +2,9 @@
 
 # Local scratch output (audits, PDF inspection tools)
 tmp/
+
+# Nested checkout, not part of the site
+claude-code-templates/
+
+# Local AI agent skills
+portfolio-next/.agent/

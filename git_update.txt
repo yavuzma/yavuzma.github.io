@@ -1,3 +1,0 @@
-git add .
-git commit -m "Cleanup project detail button styles"
-git push
