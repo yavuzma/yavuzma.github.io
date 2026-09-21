@@ -1,217 +1,37 @@
-"use client";
-
-import { useEffect, useRef, useCallback } from "react";
 import DownloadCVButton from "./DownloadCVButton";
-import { smoothScrollTo } from "../lib/lenis";
-import Spotlight from "./Spotlight";
-
-function InfoBadge() {
-    return (
-        <div className="flex justify-center mb-6" style={{ animation: "fadeUp 0.6s ease 0.1s both" }}>
-            <span className="hero-depth-badge" style={{ fontFamily: "var(--fm)", fontSize: "0.72rem" }}>
-                <span className="dot" />
-                Shipbuilding and Ocean Engineering, ITU · b. August 2003
-            </span>
-        </div>
-    );
-}
 
 export default function Hero() {
-    const subRef = useRef<HTMLDivElement>(null);
-    const blipRef = useRef<HTMLDivElement>(null);
-
-    const handleMagnetic = useCallback((e: React.MouseEvent<HTMLElement>) => {
-        const el = e.currentTarget;
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        el.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
-    }, []);
-
-    const resetMagnetic = useCallback((e: React.MouseEvent<HTMLElement>) => {
-        e.currentTarget.style.transform = "translate(0, 0)";
-    }, []);
-
-    useEffect(() => {
-        let raf: number;
-        const track = () => {
-            const sub = subRef.current;
-            const blip = blipRef.current;
-            if (!sub || !blip) { raf = requestAnimationFrame(track); return; }
-            const rect = sub.getBoundingClientRect();
-            const vw = window.innerWidth;
-            const subCenterX = rect.left + rect.width / 2;
-            const subCenterY = rect.top + rect.height / 2;
-            if (subCenterX > vw * 0.5 && subCenterX < vw * 0.98) {
-                const sonar = document.querySelector(".sonar-wrapper");
-                if (sonar) {
-                    const sr = sonar.getBoundingClientRect();
-                    const rx = ((subCenterX - sr.left) / sr.width) * 100;
-                    const ry = ((subCenterY - sr.top) / sr.height) * 100;
-                    blip.style.left = Math.max(8, Math.min(92, rx)) + "%";
-                    blip.style.top = Math.max(8, Math.min(92, ry)) + "%";
-                    blip.classList.add("active");
-                }
-            } else {
-                blip.classList.remove("active");
-            }
-            raf = requestAnimationFrame(track);
-        };
-        raf = requestAnimationFrame(track);
-        return () => cancelAnimationFrame(raf);
-    }, []);
-
-    const particles = Array.from({ length: 20 }, (_, i) => ({
-        id: i,
-        left: `${(i * 5.1) % 100}%`,
-        size: `${2 + (i % 4)}px`,
-        duration: `${14 + (i % 10) * 2.5}s`,
-        delay: `${(i * 1.7) % 10}s`,
-        opacity: 0.1 + (i % 5) * 0.04,
-    }));
-
-    const shapes = [
-        { type: "hexagon", top: "15%", left: "8%", size: 40, delay: "0s", dur: "22s" },
-        { type: "circle", top: "70%", left: "12%", size: 30, delay: "3s", dur: "18s" },
-        { type: "triangle", top: "25%", right: "15%", size: 35, delay: "6s", dur: "25s" },
-        { type: "circle", top: "60%", right: "8%", size: 25, delay: "9s", dur: "20s" },
-        { type: "hexagon", top: "80%", left: "45%", size: 28, delay: "4s", dur: "24s" },
-        { type: "diamond", top: "10%", right: "30%", size: 22, delay: "7s", dur: "19s" },
-    ];
-
     return (
-        <section
-            className="min-h-screen flex items-center justify-center relative overflow-hidden noise-overlay"
-            id="home"
-            style={{ padding: "7rem 2rem 5rem" }}
-        >
-            {/* Ocean Background */}
-            <div
-                className="ocean-bg absolute inset-0"
-                style={{
-                    background:
-                        "radial-gradient(ellipse at 50% -10%, #0c4a6e 0%, #071524 50%, #020617 100%)",
-                }}
-            >
-                <div className="aurora-glow" style={{ top: "-15%", left: "10%", background: "radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 70%)" }} />
-                <div className="aurora-glow" style={{ bottom: "-10%", right: "5%", background: "radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%)", animationDelay: "4s" }} />
-                <div className="aurora-glow" style={{ top: "40%", left: "50%", width: "400px", height: "400px", background: "radial-gradient(circle, rgba(249,115,22,0.06) 0%, transparent 70%)", animationDelay: "8s" }} />
+        <section id="home" className="flex items-center justify-center" style={{ minHeight: "80vh", padding: "8rem 2rem 5rem", background: "var(--bg)" }}>
+            <div className="text-center max-w-3xl mx-auto">
+                <p style={{ fontFamily: "var(--fm)", fontSize: "0.78rem", color: "var(--t2)", marginBottom: "1.5rem" }}>
+                    B.Sc. Shipbuilding and Ocean Engineering, ITU · b. August 2003
+                </p>
 
-                <div className="absolute inset-0 pointer-events-none">
-                    {particles.map((p) => (
-                        <span key={p.id} className="absolute rounded-full"
-                            style={{ width: p.size, height: p.size, background: p.id % 3 === 0 ? "rgba(34,211,238,0.6)" : p.id % 3 === 1 ? "rgba(59,130,246,0.5)" : "rgba(255,255,255,0.4)", left: p.left, bottom: "-20px", opacity: p.opacity, animation: `particleFloat ${p.duration} linear infinite`, animationDelay: p.delay }}
-                        />
-                    ))}
-                </div>
-
-                {shapes.map((s, i) => (
-                    <div key={i} className={i % 2 === 0 ? "floating-shape" : "floating-shape-slow"}
-                        style={{ top: s.top, left: s.left, right: s.right, width: `${s.size}px`, height: `${s.size}px`, border: `1px solid ${i % 3 === 0 ? "rgba(34,211,238,0.4)" : i % 3 === 1 ? "rgba(59,130,246,0.35)" : "rgba(249,115,22,0.3)"}`, borderRadius: s.type === "circle" ? "50%" : s.type === "diamond" ? "4px" : s.type === "hexagon" ? "6px" : "0", transform: s.type === "diamond" ? "rotate(45deg)" : s.type === "triangle" ? "rotate(30deg)" : "none", animationDelay: s.delay, animationDuration: s.dur }}
-                    />
-                ))}
-
-                {[15, 35, 55, 75, 92].map((pct, i) => (
-                    <div key={i} className="absolute left-0 right-0 pointer-events-none"
-                        style={{ top: `${pct}%`, height: "1px", background: `linear-gradient(90deg, transparent, rgba(34,211,238,${0.04 - i * 0.005}), transparent)` }}
-                    />
-                ))}
-
-                <div ref={subRef} className="absolute"
-                    style={{ top: "42%", left: "-320px", width: "200px", opacity: 0.3, animation: "swim 45s linear infinite", zIndex: 1 }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/images/theme/submarine.svg" alt="Submarine" className="w-full h-auto" />
-                </div>
-
-                <div className="fish-school">
-                    {[{ delay: "0s", dur: "20s", top: "22%", size: 24 }, { delay: "7s", dur: "26s", top: "62%", size: 18 }, { delay: "14s", dur: "30s", top: "48%", size: 14 }, { delay: "3s", dur: "22s", top: "35%", size: 20 }].map((fish, i) => (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img key={i} src="/images/theme/fish.svg" alt="" className="absolute" style={{ width: `${fish.size}px`, top: fish.top, opacity: 0.2, animation: `fishSwim ${fish.dur} linear infinite`, animationDelay: fish.delay }} />
-                    ))}
-                </div>
-            </div>
-
-            {/* Sonar */}
-            <div className="sonar-wrapper absolute pointer-events-none" style={{ right: "7%", top: "50%", transform: "translateY(-50%)", width: "260px", height: "260px", opacity: 0.55, zIndex: 0 }}>
-                <div className="absolute inset-0 rounded-full" style={{ border: "1px solid rgba(34,211,238,0.12)" }}>
-                    {[20, 40, 60].map((pct) => (<div key={pct} className="absolute rounded-full" style={{ inset: `${pct}%`, border: `1px solid rgba(34,211,238,${0.12 - pct * 0.001})` }} />))}
-                    <div className="absolute top-1/2 left-0 right-0 h-[1px]" style={{ background: "rgba(34,211,238,0.07)" }} />
-                    <div className="absolute left-1/2 top-0 bottom-0 w-[1px]" style={{ background: "rgba(34,211,238,0.07)" }} />
-                </div>
-                <div className="absolute inset-0 rounded-full" style={{ background: "conic-gradient(from 0deg, transparent 0deg, rgba(34,211,238,0.18) 35deg, rgba(34,211,238,0.04) 55deg, transparent 65deg)", animation: "sonarSweep 4s linear infinite" }} />
-                <div ref={blipRef} className="blip-dot" />
-            </div>
-
-            {/* Grid overlay */}
-            <div className="grid-bg absolute inset-0 pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(34,211,238,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,.025) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
-
-            {/* Cursor-following spotlight */}
-            <Spotlight color="rgba(34, 211, 238, 0.14)" size={620} />
-
-            {/* HERO CONTENT */}
-            <div className="relative z-10 text-center max-w-3xl mx-auto">
-                <InfoBadge />
-
-                {/* Name */}
-                <h1 style={{ fontFamily: "var(--fh)", fontSize: "clamp(3.2rem, 9vw, 6.5rem)", fontWeight: 800, lineHeight: 1.0, letterSpacing: "-2px", animation: "fadeUp 0.7s ease 0.2s both", marginBottom: "1.2rem" }}>
-                    <span style={{ color: "var(--t1)", display: "block" }}>Muhammet Ali</span>
-                    <span className="hero-name-accent" style={{ background: "linear-gradient(90deg, var(--cy), var(--bl), var(--cy))", backgroundSize: "200% auto", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", animation: "fadeUp 0.7s ease 0.25s both, shimmer 4s linear 1s infinite" }}>
-                        Yavuz
-                    </span>
+                <h1 style={{ fontFamily: "var(--fh)", fontSize: "clamp(2.8rem, 8vw, 5.5rem)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-1.5px", color: "var(--t1)", marginBottom: "1.25rem" }}>
+                    Muhammet Ali Yavuz
                 </h1>
 
-                {/* Role - readable font */}
-                <div style={{ height: "2rem", marginBottom: "3rem", animation: "fadeUp 0.7s ease 0.35s both" }}>
-                    <span style={{ fontFamily: "var(--fb)", fontSize: "1.05rem", fontWeight: 500, color: "var(--cy)", letterSpacing: "0.3px" }}>Naval Architect and Ocean Engineer</span>
-                </div>
+                <p style={{ fontFamily: "var(--fb)", fontSize: "1.15rem", fontWeight: 500, color: "var(--cy)", marginBottom: "1rem" }}>
+                    Naval Architect and Ocean Engineer
+                </p>
 
-                {/* Status */}
-                <p className="mb-20" style={{ fontFamily: "var(--fb)", fontSize: "0.9rem", color: "var(--t2)", animation: "fadeUp 0.7s ease 0.45s both" }}>
+                <p style={{ fontFamily: "var(--fb)", fontSize: "0.95rem", color: "var(--t2)", marginBottom: "2.5rem" }}>
                     Based in Lisbon, Portugal · Available from August 2027
                 </p>
 
-                {/* CTA Buttons - expanded gap and enhanced glow */}
-                <div className="flex justify-center gap-6 flex-wrap mt-8" style={{ animation: "fadeUp 0.7s ease 0.55s both" }}>
+                <div className="flex justify-center gap-4 flex-wrap">
                     <a href="#projects"
-                        onClick={(e) => { e.preventDefault(); smoothScrollTo("#projects"); }}
-                        onMouseMove={handleMagnetic} onMouseLeave={(e) => { resetMagnetic(e); e.currentTarget.style.boxShadow = "0 4px 20px rgba(34,211,238,0.25)"; e.currentTarget.style.transform = "scale(1)"; }}
-                        onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 12px 40px rgba(34,211,238,0.6)"; e.currentTarget.style.transform = "scale(1.05)"; }}
-                        className="inline-flex items-center gap-2 rounded-full transition-all duration-300"
-                        style={{ padding: "1rem 2.2rem", background: "linear-gradient(135deg, var(--cy), var(--bl))", color: "#fff", fontFamily: "var(--fb)", fontSize: "0.9rem", fontWeight: 600, letterSpacing: "0.5px", boxShadow: "0 4px 20px rgba(34,211,238,0.25)" }}>
-                        View Projects →
+                        className="inline-flex items-center gap-2 rounded-full"
+                        style={{ padding: "0.9rem 2rem", background: "var(--cy)", color: "var(--bg)", fontFamily: "var(--fb)", fontSize: "0.95rem", fontWeight: 600, textDecoration: "none" }}>
+                        Selected work
                     </a>
                     <DownloadCVButton
-                        onMouseMove={handleMagnetic}
-                        onMouseLeave={(e) => { resetMagnetic(e); e.currentTarget.style.borderColor = "rgba(148,163,184,0.2)"; e.currentTarget.style.color = "var(--t1)"; e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "scale(1)"; }}
-                        onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--cy)"; e.currentTarget.style.color = "var(--cy)"; e.currentTarget.style.background = "rgba(34,211,238,0.08)"; e.currentTarget.style.boxShadow = "0 0 20px rgba(34,211,238,0.2) inset"; e.currentTarget.style.transform = "scale(1.05)"; }}
-                        className="inline-flex items-center gap-2 rounded-full border transition-all duration-300 cursor-pointer"
-                        style={{ padding: "1rem 2.2rem", borderColor: "rgba(148,163,184,0.2)", color: "var(--t1)", fontFamily: "var(--fb)", fontSize: "0.9rem", fontWeight: 600, letterSpacing: "0.5px", backdropFilter: "blur(8px)", background: "rgba(255,255,255,0.04)" }}
+                        className="inline-flex items-center gap-2 rounded-full border cursor-pointer"
+                        style={{ padding: "0.9rem 2rem", borderColor: "var(--bdr)", color: "var(--t1)", fontFamily: "var(--fb)", fontSize: "0.95rem", fontWeight: 600, background: "transparent" }}
                     />
                 </div>
-            </div>
-
-            {/* Depth gauge - left side */}
-            <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-1 pointer-events-none" style={{ animation: "fadeUp 0.7s ease 1.1s both", opacity: 0.5 }}>
-                <span style={{ fontFamily: "var(--fm)", fontSize: "0.55rem", color: "var(--cy)", letterSpacing: "2px", writingMode: "vertical-rl", textOrientation: "mixed", transform: "rotate(180deg)", textTransform: "uppercase", marginBottom: "0.5rem" }}>DEPTH</span>
-                <div style={{ width: "1px", height: "140px", background: "linear-gradient(to bottom, var(--cy), transparent)", position: "relative" }}>
-                    {[0, 30, 60, 90, 120].map((y) => (
-                        <div key={y} style={{ position: "absolute", top: `${y}px`, left: "4px", display: "flex", alignItems: "center", gap: "4px" }}>
-                            <div style={{ width: y % 60 === 0 ? "8px" : "4px", height: "1px", background: "var(--cy)", opacity: y % 60 === 0 ? 0.7 : 0.4 }} />
-                            {y % 60 === 0 && <span style={{ fontFamily: "var(--fm)", fontSize: "0.5rem", color: "var(--cy)", opacity: 0.6 }}>{y === 0 ? "0m" : `${y * 2}m`}</span>}
-                        </div>
-                    ))}
-                </div>
-                <div style={{ fontFamily: "var(--fm)", fontSize: "0.55rem", color: "var(--cy)", opacity: 0.5, marginTop: "0.5rem", letterSpacing: "1px" }}>ASL</div>
-            </div>
-
-{/* Scroll indicator */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3" style={{ animation: "fadeUp 0.7s ease 0.9s both" }}>
-                <div className="overflow-hidden" style={{ width: "1px", height: "40px" }}>
-                    <div className="w-full h-full" style={{ background: "linear-gradient(var(--cy), transparent)", animation: "scrollDown 2s ease infinite" }} />
-                </div>
-                <span style={{ fontFamily: "var(--fb)", fontSize: "0.7rem", color: "var(--t3)", textTransform: "uppercase", letterSpacing: "3px", fontWeight: 500 }}>Scroll</span>
             </div>
         </section>
     );
 }
-
