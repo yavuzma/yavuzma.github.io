@@ -40,8 +40,8 @@ export default function CVPage() {
                         <p className="text-xl font-bold text-slate-700">Naval Architect & CFD Engineer</p>
                         <div className="text-xs font-semibold text-slate-500 text-right uppercase tracking-widest leading-relaxed">
                             <p>Born: August 2003</p>
-                            <p>Istanbul, Turkey</p>
-                            <p className="text-black">muhammetaliyavuz-itu.github.io</p>
+                            <p>Lisbon, Portugal</p>
+                            <p className="text-black">yavuzma.github.io</p>
                         </div>
                     </div>
                 </header>
@@ -107,6 +107,15 @@ export default function CVPage() {
                             <div className="space-y-6">
                                 <div>
                                     <div className="flex justify-between items-baseline mb-1">
+                                        <h3 className="font-bold text-slate-900 text-[0.95rem]">CENTEC, Instituto Superior Técnico</h3>
+                                        <span className="text-xs font-bold text-slate-500 uppercase">Sep 2026 - Present</span>
+                                    </div>
+                                    <p className="text-[0.85rem] font-bold text-blue-700">Erasmus+ Research Trainee</p>
+                                    <p className="text-xs text-slate-600 font-medium mt-1">Underwater radiated noise (URN) of benchmark propellers in the wake of a submerged body.<br />Turbulence-model study in STAR-CCM+ toward a tractable numerical basis for URN prediction.</p>
+                                </div>
+
+                                <div>
+                                    <div className="flex justify-between items-baseline mb-1">
                                         <h3 className="font-bold text-slate-900 text-[0.95rem]">ITUKAT</h3>
                                         <span className="text-xs font-bold text-slate-500 uppercase">Aug 2025 - Present</span>
                                     </div>
@@ -117,7 +126,7 @@ export default function CVPage() {
                                 <div>
                                     <div className="flex justify-between items-baseline mb-1">
                                         <h3 className="font-bold text-slate-900 text-[0.95rem]">ITU Ata Nutku Towing Tank</h3>
-                                        <span className="text-xs font-bold text-slate-500 uppercase">Sep 2024 - Present</span>
+                                        <span className="text-xs font-bold text-slate-500 uppercase">Sep 2024 - Aug 2026</span>
                                     </div>
                                     <p className="text-[0.85rem] font-bold text-blue-700">Curious Student</p>
                                     <p className="text-xs text-slate-600 font-medium mt-1">Hands-on experience in resistance, propulsion, and seakeeping experiments.</p>

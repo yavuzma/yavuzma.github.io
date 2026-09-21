@@ -63,7 +63,7 @@ portfolio/
 In `index.html`, search for:
 - Email: `yavuzmu21@itu.edu.tr`
 - LinkedIn: `in/yavuzitu`
-- GitHub: `muhammetaliyavuz-itu`
+- GitHub: `yavuzma`
 
 ### 2. Add Your CV
 Place your PDF CV in `docs/CV_Muhammet_Ali_Yavuz.pdf`
@@ -86,13 +86,13 @@ Edit the project cards in `index.html` to match your actual data.
 ### Method 1: Direct Upload
 ```bash
 # Clone your GitHub Pages repo
-git clone https://github.com/muhammetaliyavuz-itu/muhammetaliyavuz-itu.github.io.git
+git clone https://github.com/yavuzma/yavuzma.github.io.git
 
 # Copy all files from portfolio folder
-cp -r portfolio/* muhammetaliyavuz-itu.github.io/
+cp -r portfolio/* yavuzma.github.io/
 
 # Commit and push
-cd muhammetaliyavuz-itu.github.io
+cd yavuzma.github.io
 git add .
 git commit -m "Update portfolio with dark theme"
 git push origin main
@@ -102,7 +102,7 @@ git push origin main
 1. Open the portfolio folder in VSCode
 2. Install "GitHub Pull Requests and Issues" extension
 3. Initialize Git: `git init`
-4. Add remote: `git remote add origin https://github.com/muhammetaliyavuz-itu/muhammetaliyavuz-itu.github.io.git`
+4. Add remote: `git remote add origin https://github.com/yavuzma/yavuzma.github.io.git`
 5. Stage all files: `git add .`
 6. Commit: `git commit -m "Initial commit - Dark theme portfolio"`
 7. Push: `git push -u origin main`
@@ -178,6 +178,6 @@ Built with HTML, CSS, and JavaScript
 
 **Last Updated:** February 2025
 
-**Live Site:** https://muhammetaliyavuz-itu.github.io
+**Live Site:** https://yavuzma.github.io
 
 For questions or issues, contact: yavuzmu21@itu.edu.tr

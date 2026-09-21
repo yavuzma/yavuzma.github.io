@@ -286,7 +286,7 @@ export default function CVDocument() {
                         </View>
 
                         <View style={s.contactRow}>
-                            <Text style={s.contactText}>Istanbul, Turkey</Text>
+                            <Text style={s.contactText}>Lisbon, Portugal</Text>
                             <View style={s.iconBox}>
                                 <PinIcon />
                             </View>
@@ -329,12 +329,22 @@ export default function CVDocument() {
 
                             <View style={s.expItem}>
                                 <View style={s.entryHeader}>
+                                    <Text style={s.entryRole}>Erasmus+ Research Trainee</Text>
+                                    <Text style={s.entryDate}>Sep 2026 - Present · Full-time</Text>
+                                </View>
+                                <Text style={s.entrySubtitle}>CENTEC, IST Lisbon · Host supervisor: Prof. Yordan Garbatov</Text>
+                                <Bullet>Underwater radiated noise (URN) of benchmark propellers in a submerged-body wake.</Bullet>
+                                <Bullet>STAR-CCM+ turbulence-model study; numerical URN basis for emerging IMO noise rules.</Bullet>
+                            </View>
+
+                            <View style={s.expItem}>
+                                <View style={s.entryHeader}>
                                     <Text style={s.entryRole}>Undergraduate Researcher</Text>
-                                    <Text style={s.entryDate}>Aug 2025 - Present · Full-time</Text>
+                                    <Text style={s.entryDate}>Aug 2025 - Present</Text>
                                 </View>
                                 <Text style={s.entrySubtitle}>ITUKAT</Text>
                                 <Text style={s.expConfidential}>
-                                    Projects undertaken were conducted under confidentiality constraints; descriptions focus on methodology.
+                                    Conducted under confidentiality; descriptions focus on methodology.
                                 </Text>
                                 <Bullet>Force and moment analysis in CFD with experimental (EFD) validation.</Bullet>
                                 <Bullet>Control and automation algorithms for engineering applications.</Bullet>
@@ -343,7 +353,7 @@ export default function CVDocument() {
                             <View style={s.expItem}>
                                 <View style={s.entryHeader}>
                                     <Text style={s.entryRole}>Curious Student</Text>
-                                    <Text style={s.entryDate}>Sep 2024 - Present</Text>
+                                    <Text style={s.entryDate}>Sep 2024 - Aug 2026</Text>
                                 </View>
                                 <Text style={s.entrySubtitle}>ITU Ata Nutku Towing Tank</Text>
                                 <Bullet>Resistance, propulsion, and seakeeping experiments; towing-tank testing procedures.</Bullet>
@@ -368,7 +378,7 @@ export default function CVDocument() {
                                     <Text style={s.entryDate}>Aug - Sep 2024 · Full-time Internship</Text>
                                 </View>
                                 <Text style={s.entrySubtitle}>Besiktas Shipyard</Text>
-                                <Bullet>Maintenance of main engines, hydraulics, generators; air-compressor &amp; ballast pump overhaul.</Bullet>
+                                <Bullet>Main engine, hydraulic and generator maintenance; compressor &amp; ballast pump overhaul.</Bullet>
                                 <Bullet>Welding, pipe installation, and surface coating experience.</Bullet>
                             </View>
 

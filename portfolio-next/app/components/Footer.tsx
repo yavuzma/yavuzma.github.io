@@ -29,7 +29,7 @@ export default function Footer() {
                 {/* Socials - centered in right half (50% → 100%) → sits at 75% */}
                 <div className="absolute left-3/4 -translate-x-1/2 z-10 flex gap-3">
                     {[
-                        { icon: Github, href: "https://github.com/muhammetaliyavuz-itu", label: "GitHub" },
+                        { icon: Github, href: "https://github.com/yavuzma", label: "GitHub" },
                         { icon: Linkedin, href: "https://www.linkedin.com/in/yavuzitu", label: "LinkedIn" },
                     ].map((s) => {
                         const Icon = s.icon;

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
 function AnimatedGPA({ target }: { target: number }) {
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(target);
     const ref = useRef<HTMLSpanElement>(null);
     const hasAnimated = useRef(false);
     useEffect(() => {

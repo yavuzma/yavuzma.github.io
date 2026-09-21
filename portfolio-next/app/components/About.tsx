@@ -24,7 +24,7 @@ function TiltCard({ children }: { children: React.ReactNode }) {
 }
 
 function AnimatedNumber({ target, suffix = "", decimals = 0 }: { target: number; suffix?: string; decimals?: number }) {
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(target);
     const ref = useRef<HTMLSpanElement>(null);
     const hasAnimated = useRef(false);
     useEffect(() => {

@@ -5,12 +5,26 @@ import { useRef, useState, useEffect } from "react";
 
 const experiences = [
     {
+        period: "Sep 2026 - Present",
+        title: "Erasmus+ Research Trainee",
+        company: "CENTEC, Instituto Superior Técnico",
+        companyUrl: "https://centec.tecnico.ulisboa.pt/",
+        current: true,
+        fullTime: true,
+        internship: true,
+        description: "Centre for Marine Technology and Ocean Engineering, University of Lisbon. Host supervisor: Prof. Yordan Garbatov (CENTEC); home supervisor: Prof. Uğur Oral Ünal (ITU Cavitation Tunnel).",
+        bullets: [
+            "Underwater radiated noise (URN) of benchmark propellers operating in the wake of a submerged body.",
+            "Turbulence-model study on a reference propeller in STAR-CCM+, checked against open-water thrust and torque data.",
+            "Building a tractable numerical basis for URN prediction, aimed at the emerging IMO underwater noise requirements for commercial shipping.",
+        ],
+    },
+    {
         period: "Aug 2025 - Present",
         title: "Undergraduate Researcher",
         company: "ITUKAT",
         companyUrl: "https://itukat.itu.edu.tr/en/home/",
         current: true,
-        fullTime: true,
         description: "Projects undertaken were conducted under confidentiality constraints. Public descriptions focus on methodologies and technical contributions.",
         bullets: [
             "Force and moment analysis in CFD simulations, including validation through experimental (EFD) data.",
@@ -18,10 +32,10 @@ const experiences = [
         ],
     },
     {
-        period: "Sep 2024 - Present",
+        period: "Sep 2024 - Aug 2026",
         title: "Curious Student",
         company: "ITU Ata Nutku Towing Tank",
-        current: true,
+        current: false,
         bullets: [
             "Participated in resistance, propulsion, and seakeeping experiments.",
             "Gained hands-on experience in towing tank testing procedures and maritime experimental methods.",

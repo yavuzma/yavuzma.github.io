@@ -6,7 +6,7 @@ import { Mail, Linkedin, MapPin } from "lucide-react";
 const contacts = [
     { icon: Mail, label: "Email", value: "yavuzmu21@itu.edu.tr", href: "mailto:yavuzmu21@itu.edu.tr", color: "var(--cy)" },
     { icon: Linkedin, label: "LinkedIn", value: "Muhammet Ali Yavuz", href: "https://www.linkedin.com/in/yavuzitu", color: "var(--bl)" },
-    { icon: MapPin, label: "Location", value: "Istanbul, Turkey", href: null, color: "var(--cy)" },
+    { icon: MapPin, label: "Location", value: "Lisbon, Portugal", href: null, color: "var(--cy)" },
 ];
 
 const fadeInUp = {

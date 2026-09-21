@@ -48,7 +48,7 @@ function TypewriterRole({ words, speed = 80, pause = 2200 }: { words: string[], 
 }
 
 function AnimatedCounterStat({ target, decimals = 0, duration = 2000, label, unit, color }: { target: number, decimals?: number, duration?: number, label: string, unit: string, color: string }) {
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(target);
     const [started, setStarted] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 

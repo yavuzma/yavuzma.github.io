@@ -233,7 +233,7 @@ export const projects: Project[] = [
         image: "/images/projects/kcs_hull_with_rudder/3_free_surface.png",
         gradient: "from-sky-950 to-sky-600",
         metrics: [
-            { value: "0.75%", label: "deviation" },
+            { value: "0.22%", label: "best deviation" },
             { value: "5", label: "cases" },
             { value: "Unsteady RANS", label: "Method" },
         ],
