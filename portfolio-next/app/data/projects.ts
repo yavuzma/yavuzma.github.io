@@ -84,7 +84,7 @@ export const projects: Project[] = [
         shortDesc:
             "Designed for surveillance, environmental response, and special ops, this 69.5m hybrid vessel features Azipod propulsion and extensive mission equipment.",
         badge: "Ship Design · Preliminary",
-        image: "/images/projects/undergraduation/side_view.png",
+        image: "/images/projects/tcsg/side_view.png",
         imageAlt: "Side profile of the TCSG FISILTI hull form",
         imageCaption: "Hull form, side profile.",
         context: "Graduation project, Istanbul Technical University, Dec 2025.",
@@ -176,7 +176,7 @@ export const projects: Project[] = [
                 },
             ],
             fullWidthImage: {
-                src: "/images/projects/undergraduation/side_view.png",
+                src: "/images/projects/tcsg/side_view.png",
                 alt: "TCSG FISILTI Side View",
             },
         },
