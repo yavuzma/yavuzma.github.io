@@ -246,13 +246,9 @@ export const projects: Project[] = [
         shortDesc:
             "Free-surface CFD of the KCS container ship with rudder: unsteady RANS with VOF in a five-run sensitivity study, compared with experimental (EFD) resistance.",
         badge: "CFD · STAR-CCM+",
-        image: "/images/projects/kcs_hull_with_rudder/1.png",
+        image: "/images/projects/kcs_hull_with_rudder/3.png",
         imageAlt: "Contour plot of free-surface elevation around the KCS hull",
         imageCaption: "Free-surface elevation around the hull, run 1 (k-ε, 1.05 M cells, Δt = 0.04 s).",
-        limitations: [
-            "Mesh density, time step and turbulence model change together between runs, so the study cannot attribute a change in resistance to any single parameter. It is a sensitivity study, not a formal grid-convergence (verification) study.",
-            "Run 3, with the finest mesh and time step, resolves the Kelvin wake most sharply yet deviates most from EFD (-2.7%). The closest agreement (run 1, -0.2%) should not be read as the most accurate setup without a controlled refinement study.",
-        ],
         runs: [
             { label: "Run 1", turbulence: "k-ε", mesh: "1.05 M", timeStep: "0.04 s", drag: "83.668 N", ct: "0.00364", deviation: "-0.22%", image: "/images/projects/kcs_hull_with_rudder/1.png" },
             { label: "Run 2", turbulence: "k-ε", mesh: "1.99 M", timeStep: "0.04 s", drag: "84.483 N", ct: "0.00368", deviation: "+0.75%", image: "/images/projects/kcs_hull_with_rudder/2.png" },
@@ -413,7 +409,6 @@ export const projects: Project[] = [
         image: "/images/projects/offshore_platform/1.png",
         imageAlt: "Rhinoceros 3D model of the semi-submersible drilling platform",
         imageCaption: "Rhinoceros 3D model of the platform concept.",
-        limitations: ["Conceptual design: no structural analysis was performed."],
         gradient: "from-purple-950 to-purple-700",
         metrics: [
             { value: "70×40m", label: "deck" },

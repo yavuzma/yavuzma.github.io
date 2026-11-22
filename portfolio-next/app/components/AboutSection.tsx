@@ -1,4 +1,4 @@
-import { profile, skills, languages } from "../data/cv";
+import { profile, skills, languages, interests } from "../data/cv";
 
 export default function AboutSection() {
     const groups = [
@@ -27,6 +27,13 @@ export default function AboutSection() {
                                 </div>
                             </div>
                         ))}
+                    </div>
+
+                    <div className="skill glass shine lift reveal">
+                        <h3>Interests</h3>
+                        <div className="skill__tags">
+                            {interests.map((i) => <span key={i} className="tag">{i}</span>)}
+                        </div>
                     </div>
                 </div>
             </div>

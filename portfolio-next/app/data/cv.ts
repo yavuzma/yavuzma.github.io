@@ -174,7 +174,7 @@ export const experience: ExperienceEntry[] = [
 ];
 
 export const skills: { label: string; items: string[] }[] = [
-    { label: "CFD & analysis", items: ["STAR-CCM+", "ANSYS Fluent", "OpenFOAM", "Maxsurf", "High performance computing (HPC)"] },
+    { label: "CFD & analysis", items: ["STAR-CCM+", "ANSYS Fluent", "OpenFOAM", "Maxsurf", "High Performance Computing (HPC)"] },
     { label: "Design", items: ["SolidWorks", "Rhinoceros 3D", "AutoCAD"] },
     { label: "Programming", items: ["Python", "C / C++", "MATLAB", "Arduino"] },
 ];
