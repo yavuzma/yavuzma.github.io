@@ -237,4 +237,4 @@ export const memberships = [{ name: "SNAME", role: "Student Member", full: "Soci
 
 export const activities = ["ITU Shipbuilding Engineering Club"];
 
-export const interests = ["Hydrodynamics", "Hydroacoustics", "Propeller and ship design", "Marine and autonomous systems", "Defense technology", "AI"];
+export const interests = ["Hydrodynamics", "Hydroacoustics", "Propeller and ship design", "Marine and autonomous systems", "AI"];
